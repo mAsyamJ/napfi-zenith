@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "name": "stETH EigenLayer Vault",
+    "token": "ETH",
+    "network": "Ethereum Mainnet",
+    "apy": 6.8,
+    "tvl": 324500000,
+    "risk": "low",
+    "description": "Restaking vault for staked ETH with EigenLayer protocol"
+  },
+  {
+    "id": "2",
+    "name": "USDC Lending Vault",
+    "token": "USDC",
+    "network": "Ethereum Mainnet",
+    "apy": 4.2,
+    "tvl": 189700000,
+    "risk": "low",
+    "description": "Stable lending vault optimized for USDC yields"
+  },
+  {
+    "id": "3",
+    "name": "DAI-ETH LP Vault",
+    "token": "DAI",
+    "network": "Ethereum Mainnet",
+    "apy": 12.4,
+    "tvl": 87300000,
+    "risk": "medium",
+    "description": "Liquidity provision vault for DAI-ETH pair"
+  },
+  {
+    "id": "4",
+    "name": "AAVE Boosted Vault",
+    "token": "AAVE",
+    "network": "Ethereum Mainnet",
+    "apy": 19.7,
+    "tvl": 42100000,
+    "risk": "high",
+    "description": "High-yield AAVE leveraged lending strategy"
+  },
+  {
+    "id": "5",
+    "name": "LINK Staking Vault",
+    "token": "LINK",
+    "network": "Ethereum Mainnet",
+    "apy": 8.9,
+    "tvl": 67800000,
+    "risk": "medium",
+    "description": "LINK staking with auto-compounding rewards"
+  },
+  {
+    "id": "6",
+    "name": "UNI Autocompounding",
+    "token": "UNI",
+    "network": "Ethereum Mainnet",
+    "apy": 22.3,
+    "tvl": 35200000,
+    "risk": "high",
+    "description": "Automated UNI yield farming with high APY"
+  }
+]
