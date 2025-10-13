@@ -78,7 +78,7 @@ export const VaultsExplorer = () => {
         </div>
       </div>
 
-      <div className="w-full space-y-2">
+      <div className="w-full space-y-0 bg-card rounded-lg overflow-hidden border border-border">
         {filteredVaults.map((vault) => (
           <VaultCard 
             key={vault.id} 

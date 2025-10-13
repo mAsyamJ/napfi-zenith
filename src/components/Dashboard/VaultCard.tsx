@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -32,50 +31,48 @@ const getAPYColor = (apy: number) => {
 
 export const VaultCard = ({ name, token, network, apy, tvl, risk }: VaultCardProps) => {
   return (
-    <div className="w-full flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-card border border-border rounded-xl px-4 py-3 hover:bg-muted/50 hover:shadow-[0_0_12px_hsl(var(--primary)/0.2)] transition-all duration-300 group">
-      {/* Token + Vault Name */}
-      <div className="flex items-center gap-3 min-w-0 md:flex-[2]">
-        <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary flex-shrink-0">
+    <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 items-center bg-card border-b border-border px-4 py-4 hover:bg-muted/50 hover:shadow-[0_0_12px_hsl(var(--primary)/0.2)] transition-all duration-300 group rounded-lg">
+      {/* Token Icon + Vault Name - 4 cols */}
+      <div className="md:col-span-4 flex items-center gap-3 min-w-0">
+        <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary flex-shrink-0 text-sm">
           {token}
         </div>
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <h3 className="font-semibold text-base group-hover:text-primary transition-colors truncate">
             {name}
           </h3>
-          <p className="text-muted-foreground text-xs">{network}</p>
+          <p className="text-muted-foreground text-xs truncate">{network}</p>
         </div>
       </div>
 
-      {/* APY */}
-      <div className="flex md:flex-col items-baseline md:items-end gap-1 md:flex-1">
-        <span className="text-xs text-muted-foreground md:hidden">APY:</span>
+      {/* APY - 2 cols */}
+      <div className="md:col-span-2 flex md:flex-col items-baseline md:items-start gap-2 md:gap-0">
+        <span className="text-xs text-muted-foreground md:mb-1">APY</span>
         <p className={`text-xl md:text-2xl font-bold ${getAPYColor(apy)}`}>{apy}%</p>
-        <span className="text-xs text-muted-foreground hidden md:block">APY</span>
       </div>
 
-      {/* TVL */}
-      <div className="flex md:flex-col items-baseline md:items-end gap-1 md:flex-1">
-        <span className="text-xs text-muted-foreground md:hidden">TVL:</span>
+      {/* TVL - 2 cols */}
+      <div className="md:col-span-2 flex md:flex-col items-baseline md:items-start gap-2 md:gap-0">
+        <span className="text-xs text-muted-foreground md:mb-1">TVL</span>
         <p className="text-base md:text-lg font-semibold">{formatTVL(tvl)}</p>
-        <span className="text-xs text-muted-foreground hidden md:block">TVL</span>
       </div>
 
-      {/* Risk Badge */}
-      <div className="md:flex-1 flex md:justify-center">
-        <Badge className={`${getRiskBadge(risk)} border-0`}>
-          {risk.charAt(0).toUpperCase() + risk.slice(1)} Risk
+      {/* Risk Badge - 1 col */}
+      <div className="md:col-span-1 flex items-center">
+        <Badge className={`${getRiskBadge(risk)} border-0 text-xs`}>
+          {risk.charAt(0).toUpperCase() + risk.slice(1)}
         </Badge>
       </div>
 
-      {/* Action Buttons */}
-      <div className="flex gap-2 md:flex-[1.5]">
-        <Button size="sm" className="flex-1 md:flex-initial">
+      {/* Action Buttons - 3 cols */}
+      <div className="md:col-span-3 flex gap-2">
+        <Button size="sm" className="flex-1 md:flex-initial text-xs">
           Deposit
         </Button>
-        <Button size="sm" variant="outline" className="flex-1 md:flex-initial">
+        <Button size="sm" variant="outline" className="flex-1 md:flex-initial text-xs">
           Withdraw
         </Button>
-        <Button size="sm" variant="outline" className="flex-1 md:flex-initial">
+        <Button size="sm" variant="outline" className="flex-1 md:flex-initial text-xs">
           Details
         </Button>
       </div>
