@@ -24,50 +24,61 @@ const formatTVL = (tvl: number) => {
   return `$${(tvl / 1000000).toFixed(1)}M`;
 };
 
+const getAPYColor = (apy: number) => {
+  if (apy >= 15) return "text-success";
+  if (apy >= 8) return "text-warning";
+  return "text-muted-foreground";
+};
+
 export const VaultCard = ({ name, token, network, apy, tvl, risk }: VaultCardProps) => {
   return (
-    <Card className="bg-card border-border hover:border-primary/30 transition-all duration-300 group shadow-lg hover:shadow-primary/10">
-      <CardContent className="p-6">
-        <div className="flex justify-between items-start mb-4">
-          <div className="flex items-center gap-3">
-            <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary">
-              {token}
-            </div>
-            <div>
-              <h3 className="font-bold text-lg group-hover:text-primary transition-colors">
-                {name}
-              </h3>
-              <p className="text-muted-foreground text-sm">{network}</p>
-            </div>
-          </div>
-          <Badge className={`${getRiskBadge(risk)} border-0`}>
-            {risk.charAt(0).toUpperCase() + risk.slice(1)} Risk
-          </Badge>
+    <div className="w-full flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-card border border-border rounded-xl px-4 py-3 hover:bg-muted/50 hover:shadow-[0_0_12px_hsl(var(--primary)/0.2)] transition-all duration-300 group">
+      {/* Token + Vault Name */}
+      <div className="flex items-center gap-3 min-w-0 md:flex-[2]">
+        <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary flex-shrink-0">
+          {token}
         </div>
+        <div className="min-w-0">
+          <h3 className="font-semibold text-base group-hover:text-primary transition-colors truncate">
+            {name}
+          </h3>
+          <p className="text-muted-foreground text-xs">{network}</p>
+        </div>
+      </div>
 
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          <div className="bg-background rounded-xl p-3">
-            <p className="text-muted-foreground text-sm">APY</p>
-            <p className="text-2xl font-bold text-primary">{apy}%</p>
-          </div>
-          <div className="bg-background rounded-xl p-3">
-            <p className="text-muted-foreground text-sm">TVL</p>
-            <p className="text-xl font-bold">{formatTVL(tvl)}</p>
-          </div>
-        </div>
+      {/* APY */}
+      <div className="flex md:flex-col items-baseline md:items-end gap-1 md:flex-1">
+        <span className="text-xs text-muted-foreground md:hidden">APY:</span>
+        <p className={`text-xl md:text-2xl font-bold ${getAPYColor(apy)}`}>{apy}%</p>
+        <span className="text-xs text-muted-foreground hidden md:block">APY</span>
+      </div>
 
-        <div className="grid grid-cols-3 gap-3">
-          <Button className="bg-primary hover:bg-primary/90 transition-colors">
-            Deposit
-          </Button>
-          <Button variant="outline" className="bg-background hover:bg-muted">
-            Withdraw
-          </Button>
-          <Button variant="outline" className="bg-background hover:bg-muted">
-            Details
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
+      {/* TVL */}
+      <div className="flex md:flex-col items-baseline md:items-end gap-1 md:flex-1">
+        <span className="text-xs text-muted-foreground md:hidden">TVL:</span>
+        <p className="text-base md:text-lg font-semibold">{formatTVL(tvl)}</p>
+        <span className="text-xs text-muted-foreground hidden md:block">TVL</span>
+      </div>
+
+      {/* Risk Badge */}
+      <div className="md:flex-1 flex md:justify-center">
+        <Badge className={`${getRiskBadge(risk)} border-0`}>
+          {risk.charAt(0).toUpperCase() + risk.slice(1)} Risk
+        </Badge>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex gap-2 md:flex-[1.5]">
+        <Button size="sm" className="flex-1 md:flex-initial">
+          Deposit
+        </Button>
+        <Button size="sm" variant="outline" className="flex-1 md:flex-initial">
+          Withdraw
+        </Button>
+        <Button size="sm" variant="outline" className="flex-1 md:flex-initial">
+          Details
+        </Button>
+      </div>
+    </div>
   );
 };
