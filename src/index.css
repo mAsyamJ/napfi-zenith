@@ -8,6 +8,59 @@
 
 @layer base {
   :root {
+    /* Light theme base colors */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    /* Neon blue primary */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 217 91% 70%;
+
+    /* Purple accent */
+    --secondary: 271 81% 66%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --accent: 271 81% 66%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Success/Positive */
+    --success: 142 76% 46%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warning/Medium */
+    --warning: 48 96% 53%;
+    --warning-foreground: 0 0% 0%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 217 91% 60%;
+
+    --radius: 1rem;
+
+    /* Custom gradients for light mode */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(271 81% 66%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 96%));
+    
+    /* Shadows with glow for light mode */
+    --shadow-glow-blue: 0 0 40px hsl(217 91% 60% / 0.2);
+    --shadow-glow-purple: 0 0 40px hsl(271 81% 66% / 0.2);
+    --shadow-card: 0 10px 30px hsl(240 15% 5% / 0.1);
+  }
+
+  .dark {
     /* Dark theme base colors */
     --background: 240 15% 5%;
     --foreground: 0 0% 100%;
@@ -47,8 +100,6 @@
     --border: 240 10% 15%;
     --input: 240 10% 15%;
     --ring: 217 91% 60%;
-
-    --radius: 1rem;
 
     /* Custom gradients */
     --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(271 81% 66%));
