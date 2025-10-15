@@ -1,21 +1,91 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import Chart from "react-apexcharts";
+import { ApexOptions } from "apexcharts";
 
 const timeframes = ["1M", "6M", "1Y", "All"];
 
 export const PerformanceChart = () => {
+  const [activeTimeframe, setActiveTimeframe] = useState(0);
+
+  const chartData = [
+    { name: "Portfolio Value", data: [100, 110, 105, 120, 118, 135, 142] }
+  ];
+
+  const chartOptions: ApexOptions = {
+    chart: {
+      toolbar: { show: false },
+      zoom: { enabled: false },
+      background: 'transparent',
+      foreColor: '#999',
+    },
+    colors: ['hsl(217, 91%, 60%)'],
+    stroke: { 
+      curve: 'smooth', 
+      width: 3,
+    },
+    grid: { 
+      borderColor: 'hsl(240, 10%, 15%)',
+      strokeDashArray: 4,
+    },
+    xaxis: {
+      categories: ['Mar 1', 'Mar 8', 'Mar 15', 'Mar 22', 'Mar 29', 'Apr 5', 'Apr 12'],
+      labels: { 
+        style: { 
+          colors: '#666',
+          fontSize: '11px',
+        }
+      },
+      axisBorder: { show: false },
+      axisTicks: { show: false },
+    },
+    yaxis: {
+      labels: { 
+        style: { 
+          colors: '#666',
+          fontSize: '11px',
+        },
+        formatter: (value) => `$${value}K`
+      }
+    },
+    tooltip: {
+      theme: 'dark',
+      y: {
+        formatter: (value) => `$${value}K`
+      }
+    },
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shadeIntensity: 1,
+        opacityFrom: 0.4,
+        opacityTo: 0.1,
+        stops: [0, 100]
+      }
+    },
+    dataLabels: {
+      enabled: false
+    }
+  };
+
   return (
-    <Card className="lg:col-span-2 bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-lg">
-      <CardHeader>
+    <Card className="lg:col-span-2 bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-sm">
+      <CardHeader className="pb-3">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-bold">Portfolio Performance</h2>
-          <div className="flex bg-background rounded-lg p-1">
+          <h2 className="text-lg font-bold">Portfolio Performance</h2>
+          <div className="flex bg-muted rounded-lg p-1">
             {timeframes.map((tf, idx) => (
               <Button
                 key={tf}
-                variant={idx === 0 ? "default" : "ghost"}
+                variant="ghost"
                 size="sm"
-                className={idx === 0 ? "bg-primary/20 text-primary" : "text-muted-foreground hover:text-foreground"}
+                onClick={() => setActiveTimeframe(idx)}
+                className={`h-7 px-3 text-xs ${
+                  idx === activeTimeframe 
+                    ? "bg-primary/20 text-primary hover:bg-primary/30" 
+                    : "text-muted-foreground hover:text-foreground hover:bg-transparent"
+                }`}
               >
                 {tf}
               </Button>
@@ -23,43 +93,29 @@ export const PerformanceChart = () => {
           </div>
         </div>
       </CardHeader>
-      <CardContent>
-        <div className="h-64 w-full bg-background/50 rounded-xl flex items-center justify-center">
-          <div className="w-full h-full relative overflow-hidden rounded-xl">
-            <div className="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-primary/10 to-transparent"></div>
-            <svg viewBox="0 0 500 200" className="w-full h-full">
-              <defs>
-                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="hsl(217 91% 60%)" />
-                  <stop offset="100%" stopColor="hsl(271 81% 66%)" />
-                </linearGradient>
-              </defs>
-              <path 
-                d="M0,150 C100,100 150,50 200,80 C250,110 300,150 350,120 C400,90 450,40 500,60" 
-                fill="none" 
-                stroke="url(#lineGradient)" 
-                strokeWidth="3"
-                className="drop-shadow-lg"
-              />
-              <circle cx="200" cy="80" r="5" fill="hsl(217 91% 60%)" className="glow-blue" />
-              <circle cx="350" cy="120" r="5" fill="hsl(217 91% 60%)" className="glow-blue" />
-              <circle cx="500" cy="60" r="5" fill="hsl(271 81% 66%)" className="glow-purple" />
-            </svg>
-          </div>
+      <CardContent className="pb-4">
+        <div className="h-64 w-full">
+          <Chart
+            type="area"
+            height="100%"
+            width="100%"
+            series={chartData}
+            options={chartOptions}
+          />
         </div>
 
-        <div className="grid grid-cols-3 gap-4 mt-6">
-          <div className="bg-background rounded-xl p-4">
-            <p className="text-muted-foreground text-sm mb-1">Current</p>
-            <p className="text-xl font-bold">$142,568.32</p>
+        <div className="grid grid-cols-3 gap-3 mt-4">
+          <div className="bg-muted/50 rounded-lg p-3">
+            <p className="text-muted-foreground text-xs mb-1">Current</p>
+            <p className="text-lg font-bold">$142,568</p>
           </div>
-          <div className="bg-background rounded-xl p-4">
-            <p className="text-muted-foreground text-sm mb-1">Profit/Loss</p>
-            <p className="text-xl font-bold text-success">+$24,317.80</p>
+          <div className="bg-muted/50 rounded-lg p-3">
+            <p className="text-muted-foreground text-xs mb-1">Profit/Loss</p>
+            <p className="text-lg font-bold text-success">+$24,318</p>
           </div>
-          <div className="bg-background rounded-xl p-4">
-            <p className="text-muted-foreground text-sm mb-1">ROI</p>
-            <p className="text-xl font-bold text-success">+21.4%</p>
+          <div className="bg-muted/50 rounded-lg p-3">
+            <p className="text-muted-foreground text-xs mb-1">ROI</p>
+            <p className="text-lg font-bold text-success">+21.4%</p>
           </div>
         </div>
       </CardContent>
