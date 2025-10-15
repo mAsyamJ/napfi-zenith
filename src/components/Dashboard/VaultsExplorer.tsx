@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Search, ArrowUpDown, ArrowUp, ArrowDown, Filter as FilterIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -35,6 +36,7 @@ const categories = [
 ];
 
 export const VaultsExplorer = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedProtocol, setSelectedProtocol] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -186,6 +188,7 @@ export const VaultsExplorer = () => {
           {filteredVaults.map((vault) => (
             <div
               key={vault.id}
+              onClick={() => navigate(`/vault/${vault.id}`)}
               className="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-muted/50 transition-colors cursor-pointer group"
             >
               {/* Vault Name + Tokens */}
