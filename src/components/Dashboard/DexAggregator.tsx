@@ -1,13 +1,19 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowDownUp, Info } from "lucide-react";
+import { ArrowDownUp, Info, ExternalLink } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const DexAggregator = () => {
+  const navigate = useNavigate();
+
   return (
-    <Card className="bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-lg">
+    <Card className="bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-lg cursor-pointer group" onClick={() => navigate("/swap")}>
       <CardHeader>
-        <h2 className="text-xl font-bold">DEX Aggregator</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold">DEX Aggregator</h2>
+          <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+        </div>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="bg-background rounded-xl p-4">
