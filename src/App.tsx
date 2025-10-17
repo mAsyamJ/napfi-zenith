@@ -7,6 +7,8 @@ import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import VaultDetail from "./pages/VaultDetail";
 import Swap from "./pages/Swap";
+import Pro from "./pages/Pro";
+import Portfolio from "./pages/Portfolio";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +24,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/vault/:id" element={<VaultDetail />} />
             <Route path="/swap" element={<Swap />} />
+            <Route path="/pro" element={<Pro />} />
+            <Route path="/portfolio" element={<Portfolio />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

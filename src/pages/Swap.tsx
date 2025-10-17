@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AppSidebar } from "@/components/AppSidebar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowDownUp, ChevronDown, Info } from "lucide-react";
@@ -18,6 +18,7 @@ const Swap = () => {
   const [receiveToken, setReceiveToken] = useState<Token>(mockTokens[2]); // COW
   const [payAmount, setPayAmount] = useState<string>("100");
   const [selectingToken, setSelectingToken] = useState<"pay" | "receive" | null>(null);
+  const [hoveredToken, setHoveredToken] = useState<string | null>(null);
 
   const calculateReceiveAmount = () => {
     if (!payAmount || isNaN(parseFloat(payAmount))) return "0";
@@ -53,16 +54,22 @@ const Swap = () => {
         
         <main className="flex-1 lg:ml-64 transition-all duration-300">
           {/* Upper Navbar */}
-          <div className="border-b border-border bg-card">
+          <div className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-sm">
             <div className="p-4 md:p-6">
               <div className="flex gap-6">
                 <button className="px-4 py-2 font-medium text-foreground border-b-2 border-primary">
                   Swap
                 </button>
-                <button className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors">
+                <button 
+                  onClick={() => navigate("/pro")}
+                  className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Pro
                 </button>
-                <button className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors">
+                <button 
+                  onClick={() => navigate("/portfolio")}
+                  className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Portfolio
                 </button>
               </div>
@@ -80,7 +87,9 @@ const Swap = () => {
 
             <Card className="max-w-2xl mx-auto bg-card border-border">
               <CardHeader>
-                <CardTitle>Select Token</CardTitle>
+                <div className="flex items-center justify-between">
+                  <h2 className="text-xl font-bold">Select Token</h2>
+                </div>
               </CardHeader>
               <CardContent>
                 <Input
@@ -93,6 +102,8 @@ const Swap = () => {
                     <button
                       key={token.symbol}
                       onClick={() => handleSelectToken(token)}
+                      onMouseEnter={() => setHoveredToken(token.symbol)}
+                      onMouseLeave={() => setHoveredToken(null)}
                       className="w-full p-4 bg-muted/50 hover:bg-muted rounded-lg transition-all duration-200 hover:border-primary/50 border border-transparent group"
                     >
                       <div className="flex items-center justify-between">
@@ -132,20 +143,22 @@ const Swap = () => {
                         </div>
                       </div>
 
-                      <div className="mt-3 pt-3 border-t border-border/50 grid grid-cols-3 gap-2 text-xs text-muted-foreground">
-                        <div>
-                          <div>Liquidity</div>
-                          <div className="text-foreground font-medium">{token.liquidity}</div>
+                      {hoveredToken === token.symbol && (
+                        <div className="mt-3 pt-3 border-t border-border/50 grid grid-cols-3 gap-2 text-xs text-muted-foreground animate-fade-in">
+                          <div>
+                            <div>Liquidity</div>
+                            <div className="text-foreground font-medium">{token.liquidity}</div>
+                          </div>
+                          <div>
+                            <div>24h Volume</div>
+                            <div className="text-foreground font-medium">{token.volume24h}</div>
+                          </div>
+                          <div>
+                            <div>Market Cap</div>
+                            <div className="text-foreground font-medium">{token.marketCap}</div>
+                          </div>
                         </div>
-                        <div>
-                          <div>24h Volume</div>
-                          <div className="text-foreground font-medium">{token.volume24h}</div>
-                        </div>
-                        <div>
-                          <div>Market Cap</div>
-                          <div className="text-foreground font-medium">{token.marketCap}</div>
-                        </div>
-                      </div>
+                      )}
                     </button>
                   ))}
                 </div>
@@ -161,18 +174,24 @@ const Swap = () => {
     <div className="min-h-screen bg-background text-foreground flex">
       <AppSidebar />
       
-      <main className="flex-1 lg:ml-64 transition-all duration-300">
+        <main className="flex-1 lg:ml-64 transition-all duration-300">
         {/* Upper Navbar */}
-        <div className="border-b border-border bg-card">
+        <div className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-sm">
           <div className="p-4 md:p-6">
             <div className="flex gap-6">
               <button className="px-4 py-2 font-medium text-foreground border-b-2 border-primary">
                 Swap
               </button>
-              <button className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors">
+              <button 
+                onClick={() => navigate("/pro")}
+                className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
                 Pro
               </button>
-              <button className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors">
+              <button 
+                onClick={() => navigate("/portfolio")}
+                className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
                 Portfolio
               </button>
             </div>
@@ -185,7 +204,7 @@ const Swap = () => {
             <p className="text-muted-foreground">Trade tokens with best execution guaranteed</p>
           </div>
 
-          <div className="max-w-lg mx-auto">
+          <div className="max-w-md mx-auto">
             <Card className="bg-card border-border shadow-lg">
               <CardHeader>
                 <div className="flex gap-4 mb-4">
