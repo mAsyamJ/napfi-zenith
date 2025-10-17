@@ -52,108 +52,105 @@ const Swap = () => {
         <AppSidebar />
         
         <main className="flex-1 lg:ml-64 transition-all duration-300">
-          <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 relative overflow-hidden">
-            {/* Animated stars background */}
-            {Array(100)
-              .fill(0)
-              .map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute bg-white rounded-full animate-pulse"
-                  style={{
-                    width: Math.random() * 3 + 1 + "px",
-                    height: Math.random() * 3 + 1 + "px",
-                    top: Math.random() * 100 + "%",
-                    left: Math.random() * 100 + "%",
-                    animationDelay: Math.random() * 3 + "s",
-                    opacity: Math.random() * 0.5 + 0.2,
-                  }}
-                />
-              ))}
-
-            <div className="relative z-10 p-4 md:p-6 lg:p-8">
-              <button
-                onClick={() => setSelectingToken(null)}
-                className="mb-6 flex items-center text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <span className="material-symbols-outlined mr-2">arrow_back</span>
-                Back to Swap
-              </button>
-
-              <Card className="max-w-2xl mx-auto bg-card/80 backdrop-blur-sm border-primary/20">
-                <CardHeader>
-                  <CardTitle>Select Token</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Input
-                    placeholder="Search by name or symbol..."
-                    className="mb-4"
-                  />
-
-                  <div className="space-y-2 max-h-[500px] overflow-y-auto pr-2">
-                    {mockTokens.map((token) => (
-                      <button
-                        key={token.symbol}
-                        onClick={() => handleSelectToken(token)}
-                        className="w-full p-4 bg-muted/50 hover:bg-muted rounded-lg transition-all duration-200 hover:border-primary/50 border border-transparent group"
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <img
-                              src={token.logo}
-                              alt={token.symbol}
-                              className="w-10 h-10 rounded-full"
-                              onError={(e) => {
-                                e.currentTarget.src = "https://cryptologos.cc/logos/placeholder-logo.png";
-                              }}
-                            />
-                            <div className="text-left">
-                              <div className="font-bold">{token.symbol}</div>
-                              <div className="text-sm text-muted-foreground">{token.name}</div>
-                            </div>
-                          </div>
-
-                          <div className="text-right">
-                            <div className="font-bold">
-                              ${token.price.toLocaleString(undefined, {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2,
-                              })}
-                            </div>
-                            <div
-                              className={`text-sm ${
-                                token.change.startsWith("+")
-                                  ? "text-green-400"
-                                  : token.change.startsWith("-")
-                                  ? "text-red-400"
-                                  : "text-muted-foreground"
-                              }`}
-                            >
-                              {token.change}
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="mt-3 pt-3 border-t border-border/50 grid grid-cols-3 gap-2 text-xs text-muted-foreground">
-                          <div>
-                            <div>Liquidity</div>
-                            <div className="text-foreground font-medium">{token.liquidity}</div>
-                          </div>
-                          <div>
-                            <div>24h Volume</div>
-                            <div className="text-foreground font-medium">{token.volume24h}</div>
-                          </div>
-                          <div>
-                            <div>Market Cap</div>
-                            <div className="text-foreground font-medium">{token.marketCap}</div>
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+          {/* Upper Navbar */}
+          <div className="border-b border-border bg-card">
+            <div className="p-4 md:p-6">
+              <div className="flex gap-6">
+                <button className="px-4 py-2 font-medium text-foreground border-b-2 border-primary">
+                  Swap
+                </button>
+                <button className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors">
+                  Pro
+                </button>
+                <button className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors">
+                  Portfolio
+                </button>
+              </div>
             </div>
+          </div>
+
+          <div className="p-4 md:p-6 lg:p-8">
+            <button
+              onClick={() => setSelectingToken(null)}
+              className="mb-6 flex items-center text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <ChevronDown className="h-4 w-4 mr-2 rotate-90" />
+              Back to Swap
+            </button>
+
+            <Card className="max-w-2xl mx-auto bg-card border-border">
+              <CardHeader>
+                <CardTitle>Select Token</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Input
+                  placeholder="Search by name or symbol..."
+                  className="mb-4"
+                />
+
+                <div className="space-y-2 max-h-[500px] overflow-y-auto pr-2">
+                  {mockTokens.map((token) => (
+                    <button
+                      key={token.symbol}
+                      onClick={() => handleSelectToken(token)}
+                      className="w-full p-4 bg-muted/50 hover:bg-muted rounded-lg transition-all duration-200 hover:border-primary/50 border border-transparent group"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <img
+                            src={token.logo}
+                            alt={token.symbol}
+                            className="w-10 h-10 rounded-full"
+                            onError={(e) => {
+                              e.currentTarget.src = "https://cryptologos.cc/logos/placeholder-logo.png";
+                            }}
+                          />
+                          <div className="text-left">
+                            <div className="font-bold">{token.symbol}</div>
+                            <div className="text-sm text-muted-foreground">{token.name}</div>
+                          </div>
+                        </div>
+
+                        <div className="text-right">
+                          <div className="font-bold">
+                            ${token.price.toLocaleString(undefined, {
+                              minimumFractionDigits: 2,
+                              maximumFractionDigits: 2,
+                            })}
+                          </div>
+                          <div
+                            className={`text-sm ${
+                              token.change.startsWith("+")
+                                ? "text-success"
+                                : token.change.startsWith("-")
+                                ? "text-destructive"
+                                : "text-muted-foreground"
+                            }`}
+                          >
+                            {token.change}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-3 pt-3 border-t border-border/50 grid grid-cols-3 gap-2 text-xs text-muted-foreground">
+                        <div>
+                          <div>Liquidity</div>
+                          <div className="text-foreground font-medium">{token.liquidity}</div>
+                        </div>
+                        <div>
+                          <div>24h Volume</div>
+                          <div className="text-foreground font-medium">{token.volume24h}</div>
+                        </div>
+                        <div>
+                          <div>Market Cap</div>
+                          <div className="text-foreground font-medium">{token.marketCap}</div>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </main>
       </div>
@@ -165,6 +162,23 @@ const Swap = () => {
       <AppSidebar />
       
       <main className="flex-1 lg:ml-64 transition-all duration-300">
+        {/* Upper Navbar */}
+        <div className="border-b border-border bg-card">
+          <div className="p-4 md:p-6">
+            <div className="flex gap-6">
+              <button className="px-4 py-2 font-medium text-foreground border-b-2 border-primary">
+                Swap
+              </button>
+              <button className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors">
+                Pro
+              </button>
+              <button className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors">
+                Portfolio
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div className="p-4 md:p-6 lg:p-8">
           <div className="mb-6">
             <h1 className="text-3xl font-bold mb-2">Swap</h1>
@@ -236,20 +250,20 @@ const Swap = () => {
                             </div>
                             <div className="grid grid-cols-3 gap-2">
                               <div>
-                                <div className="text-muted-foreground">1h</div>
-                                <div className={payToken.change1h?.startsWith("+") ? "text-green-400" : "text-red-400"}>
+                           <div className="text-muted-foreground">1h</div>
+                                <div className={payToken.change1h?.startsWith("+") ? "text-success" : "text-destructive"}>
                                   {payToken.change1h}
                                 </div>
                               </div>
                               <div>
                                 <div className="text-muted-foreground">24h</div>
-                                <div className={payToken.change24h?.startsWith("+") ? "text-green-400" : "text-red-400"}>
+                                <div className={payToken.change24h?.startsWith("+") ? "text-success" : "text-destructive"}>
                                   {payToken.change24h}
                                 </div>
                               </div>
                               <div>
                                 <div className="text-muted-foreground">7d</div>
-                                <div className={payToken.change7d?.startsWith("+") ? "text-green-400" : "text-red-400"}>
+                                <div className={payToken.change7d?.startsWith("+") ? "text-success" : "text-destructive"}>
                                   {payToken.change7d}
                                 </div>
                               </div>
@@ -322,20 +336,20 @@ const Swap = () => {
                             </div>
                             <div className="grid grid-cols-3 gap-2">
                               <div>
-                                <div className="text-muted-foreground">1h</div>
-                                <div className={receiveToken.change1h?.startsWith("+") ? "text-green-400" : "text-red-400"}>
+                           <div className="text-muted-foreground">1h</div>
+                                <div className={receiveToken.change1h?.startsWith("+") ? "text-success" : "text-destructive"}>
                                   {receiveToken.change1h}
                                 </div>
                               </div>
                               <div>
                                 <div className="text-muted-foreground">24h</div>
-                                <div className={receiveToken.change24h?.startsWith("+") ? "text-green-400" : "text-red-400"}>
+                                <div className={receiveToken.change24h?.startsWith("+") ? "text-success" : "text-destructive"}>
                                   {receiveToken.change24h}
                                 </div>
                               </div>
                               <div>
                                 <div className="text-muted-foreground">7d</div>
-                                <div className={receiveToken.change7d?.startsWith("+") ? "text-green-400" : "text-red-400"}>
+                                <div className={receiveToken.change7d?.startsWith("+") ? "text-success" : "text-destructive"}>
                                   {receiveToken.change7d}
                                 </div>
                               </div>
