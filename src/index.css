@@ -120,6 +120,12 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  canvas {
+    display: block;
   }
 
   /* Custom scrollbar */

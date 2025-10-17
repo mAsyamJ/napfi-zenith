@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { AppSidebar } from "@/components/AppSidebar";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowDownUp, ChevronDown, Info } from "lucide-react";
+import { ArrowDownUp, ChevronDown, Settings } from "lucide-react";
 import { mockTokens, Token } from "@/data/mockTokens";
 import {
   HoverCard,
@@ -11,6 +11,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { useNavigate } from "react-router-dom";
+import Starfield from "@/components/Starfield";
 
 const Swap = () => {
   const navigate = useNavigate();
@@ -49,26 +50,27 @@ const Swap = () => {
 
   if (selectingToken) {
     return (
-      <div className="min-h-screen bg-background text-foreground flex">
+      <div className="min-h-screen text-foreground flex">
+        <Starfield />
         <AppSidebar />
         
         <main className="flex-1 lg:ml-64 transition-all duration-300">
-          {/* Upper Navbar */}
-          <div className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-sm">
-            <div className="p-4 md:p-6">
-              <div className="flex gap-6">
-                <button className="px-4 py-2 font-medium text-foreground border-b-2 border-primary">
+          {/* Floating Upper Navbar */}
+          <div className="sticky top-4 z-40 px-4 md:px-6">
+            <div className="max-w-md mx-auto bg-card/95 backdrop-blur-md rounded-2xl border border-border shadow-lg">
+              <div className="p-2 flex gap-2">
+                <button className="px-6 py-2.5 font-medium bg-primary text-primary-foreground rounded-xl transition-all">
                   Swap
                 </button>
                 <button 
                   onClick={() => navigate("/pro")}
-                  className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="px-6 py-2.5 font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-all"
                 >
                   Pro
                 </button>
                 <button 
                   onClick={() => navigate("/portfolio")}
-                  className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="px-6 py-2.5 font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-all"
                 >
                   Portfolio
                 </button>
@@ -79,22 +81,18 @@ const Swap = () => {
           <div className="p-4 md:p-6 lg:p-8">
             <button
               onClick={() => setSelectingToken(null)}
-              className="mb-6 flex items-center text-muted-foreground hover:text-foreground transition-colors"
+              className="mb-6 flex items-center text-muted-foreground hover:text-foreground transition-colors max-w-md mx-auto"
             >
               <ChevronDown className="h-4 w-4 mr-2 rotate-90" />
               Back to Swap
             </button>
 
-            <Card className="max-w-2xl mx-auto bg-card border-border">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-bold">Select Token</h2>
-                </div>
-              </CardHeader>
-              <CardContent>
+            <Card className="max-w-md mx-auto bg-card/95 backdrop-blur-md border-border shadow-xl rounded-2xl">
+              <CardContent className="pt-6">
+                <h2 className="text-xl font-bold mb-4">Select Token</h2>
                 <Input
                   placeholder="Search by name or symbol..."
-                  className="mb-4"
+                  className="mb-4 bg-background/50 border-border rounded-xl"
                 />
 
                 <div className="space-y-2 max-h-[500px] overflow-y-auto pr-2">
@@ -104,7 +102,7 @@ const Swap = () => {
                       onClick={() => handleSelectToken(token)}
                       onMouseEnter={() => setHoveredToken(token.symbol)}
                       onMouseLeave={() => setHoveredToken(null)}
-                      className="w-full p-4 bg-muted/50 hover:bg-muted rounded-lg transition-all duration-200 hover:border-primary/50 border border-transparent group"
+                      className="w-full p-4 bg-muted/50 hover:bg-muted rounded-xl transition-all duration-200 hover:border-primary/50 border border-transparent"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -171,26 +169,27 @@ const Swap = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex">
+    <div className="min-h-screen text-foreground flex">
+      <Starfield />
       <AppSidebar />
       
-        <main className="flex-1 lg:ml-64 transition-all duration-300">
-        {/* Upper Navbar */}
-        <div className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-sm">
-          <div className="p-4 md:p-6">
-            <div className="flex gap-6">
-              <button className="px-4 py-2 font-medium text-foreground border-b-2 border-primary">
+      <main className="flex-1 lg:ml-64 transition-all duration-300">
+        {/* Floating Upper Navbar */}
+        <div className="sticky top-4 z-40 px-4 md:px-6">
+          <div className="max-w-md mx-auto bg-card/95 backdrop-blur-md rounded-2xl border border-border shadow-lg">
+            <div className="p-2 flex gap-2">
+              <button className="px-6 py-2.5 font-medium bg-primary text-primary-foreground rounded-xl transition-all">
                 Swap
               </button>
               <button 
                 onClick={() => navigate("/pro")}
-                className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="px-6 py-2.5 font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-all"
               >
                 Pro
               </button>
               <button 
                 onClick={() => navigate("/portfolio")}
-                className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="px-6 py-2.5 font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-all"
               >
                 Portfolio
               </button>
@@ -198,33 +197,21 @@ const Swap = () => {
           </div>
         </div>
 
-        <div className="p-4 md:p-6 lg:p-8">
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">Swap</h1>
-            <p className="text-muted-foreground">Trade tokens with best execution guaranteed</p>
-          </div>
-
-          <div className="max-w-md mx-auto">
-            <Card className="bg-card border-border shadow-lg">
-              <CardHeader>
-                <div className="flex gap-4 mb-4">
-                  <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium">
-                    Swap
-                  </button>
-                  <button className="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors">
-                    Limit
-                  </button>
-                  <button className="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors">
-                    TWAP
+        <div className="p-4 md:p-6 lg:p-8 flex items-center justify-center min-h-[calc(100vh-6rem)]">
+          <div className="w-full max-w-md">
+            <Card className="bg-card/95 backdrop-blur-md border-border shadow-xl rounded-2xl">
+              <CardContent className="p-6 space-y-1">
+                {/* Settings button */}
+                <div className="flex justify-end mb-2">
+                  <button className="p-2 hover:bg-muted rounded-lg transition-colors">
+                    <Settings className="h-5 w-5 text-muted-foreground" />
                   </button>
                 </div>
-              </CardHeader>
 
-              <CardContent className="space-y-2">
                 {/* Pay Section */}
-                <div className="bg-background rounded-xl p-4">
+                <div className="bg-muted/30 rounded-2xl p-4 border border-border/50">
                   <div className="flex justify-between mb-2">
-                    <span className="text-sm text-muted-foreground">Pay</span>
+                    <span className="text-sm text-muted-foreground font-medium">You pay</span>
                     <span className="text-sm text-muted-foreground">Balance: 0.00</span>
                   </div>
                   <div className="flex gap-3 items-center">
@@ -233,13 +220,13 @@ const Swap = () => {
                       value={payAmount}
                       onChange={(e) => setPayAmount(e.target.value)}
                       placeholder="0.0"
-                      className="text-2xl font-bold bg-transparent border-none p-0 h-auto flex-1"
+                      className="text-3xl font-bold bg-transparent border-none p-0 h-auto flex-1 focus-visible:ring-0"
                     />
                     <HoverCard>
                       <HoverCardTrigger asChild>
                         <button
                           onClick={() => setSelectingToken("pay")}
-                          className="flex items-center gap-2 bg-muted hover:bg-muted/80 px-3 py-2 rounded-lg transition-colors group"
+                          className="flex items-center gap-2 bg-background hover:bg-background/80 px-4 py-2.5 rounded-xl transition-all border border-border/50"
                         >
                           <img
                             src={payToken.logo}
@@ -249,11 +236,11 @@ const Swap = () => {
                               e.currentTarget.src = "https://cryptologos.cc/logos/placeholder-logo.png";
                             }}
                           />
-                          <span className="font-medium">{payToken.symbol}</span>
-                          <ChevronDown className="h-4 w-4 text-muted-foreground group-hover:text-foreground" />
+                          <span className="font-bold">{payToken.symbol}</span>
+                          <ChevronDown className="h-4 w-4 text-muted-foreground" />
                         </button>
                       </HoverCardTrigger>
-                      <HoverCardContent className="w-80">
+                      <HoverCardContent className="w-80 bg-card/95 backdrop-blur-md border-border rounded-xl">
                         <div className="space-y-3">
                           <div className="flex items-center gap-3">
                             <img src={payToken.logo} alt={payToken.symbol} className="w-12 h-12 rounded-full" />
@@ -305,27 +292,27 @@ const Swap = () => {
                 <div className="flex justify-center -my-2 relative z-10">
                   <button
                     onClick={handleSwapTokens}
-                    className="bg-background hover:bg-muted p-2 rounded-full border border-border transition-colors"
+                    className="bg-muted hover:bg-muted/80 p-2 rounded-xl border border-border/50 transition-colors"
                   >
                     <ArrowDownUp className="h-5 w-5 text-primary" />
                   </button>
                 </div>
 
                 {/* Receive Section */}
-                <div className="bg-background rounded-xl p-4">
+                <div className="bg-muted/30 rounded-2xl p-4 border border-border/50">
                   <div className="flex justify-between mb-2">
-                    <span className="text-sm text-muted-foreground">Receive (estimated)</span>
+                    <span className="text-sm text-muted-foreground font-medium">You receive</span>
                     <span className="text-sm text-muted-foreground">Balance: 0.00</span>
                   </div>
                   <div className="flex gap-3 items-center">
-                    <div className="text-2xl font-bold flex-1">
+                    <div className="text-3xl font-bold flex-1">
                       {calculateReceiveAmount()}
                     </div>
                     <HoverCard>
                       <HoverCardTrigger asChild>
                         <button
                           onClick={() => setSelectingToken("receive")}
-                          className="flex items-center gap-2 bg-muted hover:bg-muted/80 px-3 py-2 rounded-lg transition-colors group"
+                          className="flex items-center gap-2 bg-background hover:bg-background/80 px-4 py-2.5 rounded-xl transition-all border border-border/50"
                         >
                           <img
                             src={receiveToken.logo}
@@ -335,11 +322,11 @@ const Swap = () => {
                               e.currentTarget.src = "https://cryptologos.cc/logos/placeholder-logo.png";
                             }}
                           />
-                          <span className="font-medium">{receiveToken.symbol}</span>
-                          <ChevronDown className="h-4 w-4 text-muted-foreground group-hover:text-foreground" />
+                          <span className="font-bold">{receiveToken.symbol}</span>
+                          <ChevronDown className="h-4 w-4 text-muted-foreground" />
                         </button>
                       </HoverCardTrigger>
-                      <HoverCardContent className="w-80">
+                      <HoverCardContent className="w-80 bg-card/95 backdrop-blur-md border-border rounded-xl">
                         <div className="space-y-3">
                           <div className="flex items-center gap-3">
                             <img src={receiveToken.logo} alt={receiveToken.symbol} className="w-12 h-12 rounded-full" />
@@ -388,20 +375,17 @@ const Swap = () => {
                 </div>
 
                 {/* Exchange Rate */}
-                <div className="bg-background rounded-xl p-3 text-sm text-muted-foreground">
-                  1 {receiveToken.symbol} = {(payToken.price / receiveToken.price).toFixed(6)} {payToken.symbol}
+                <div className="bg-muted/20 rounded-xl p-3 text-sm flex items-center justify-between">
+                  <span className="text-muted-foreground">Rate</span>
+                  <span className="font-medium">
+                    1 {receiveToken.symbol} = {(payToken.price / receiveToken.price).toFixed(6)} {payToken.symbol}
+                  </span>
                 </div>
 
                 {/* Swap Button */}
-                <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity h-12 text-base font-medium">
+                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-14 text-lg font-bold rounded-xl mt-2">
                   Connect Wallet
                 </Button>
-
-                {/* Footer */}
-                <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground pt-2">
-                  <Info className="h-3 w-3" />
-                  <span>Powered by CoW Protocol • Best execution guaranteed</span>
-                </div>
               </CardContent>
             </Card>
           </div>
