@@ -9,23 +9,24 @@ const Pro = () => {
     <div className="min-h-screen bg-background text-foreground flex">
       <AppSidebar />
       
-      <main className="flex-1 lg:ml-64 transition-all duration-300">
+      <main className="flex-1 transition-all duration-300 flex justify-center">
+        <div className="w-full max-w-[1600px]">
         {/* Upper Navbar */}
-        <div className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-sm">
-          <div className="p-4 md:p-6">
-            <div className="flex gap-6">
+        <div className="sticky top-4 z-40 px-4 md:px-6 mb-6">
+          <div className="max-w-md mx-auto bg-card/95 backdrop-blur-md rounded-2xl border border-border shadow-lg">
+            <div className="p-2 flex gap-2">
               <button 
                 onClick={() => navigate("/swap")}
-                className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="px-6 py-2.5 font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-all"
               >
                 Swap
               </button>
-              <button className="px-4 py-2 font-medium text-foreground border-b-2 border-primary">
+              <button className="px-6 py-2.5 font-medium bg-primary text-primary-foreground rounded-xl transition-all">
                 Pro
               </button>
               <button 
                 onClick={() => navigate("/portfolio")}
-                className="px-4 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="px-6 py-2.5 font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-all"
               >
                 Portfolio
               </button>
@@ -60,6 +61,7 @@ const Pro = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
         </div>
       </main>
     </div>

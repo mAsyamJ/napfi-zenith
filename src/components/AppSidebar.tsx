@@ -36,7 +36,7 @@ const bottomNavItems: NavItem[] = [
 ];
 
 export function AppSidebar() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (

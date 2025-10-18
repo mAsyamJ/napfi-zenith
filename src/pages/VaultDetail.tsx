@@ -99,8 +99,8 @@ const VaultDetail = () => {
     <div className="min-h-screen bg-background text-foreground flex">
       <AppSidebar />
       
-      <main className="flex-1 lg:ml-64 transition-all duration-300">
-        <div className="p-4 md:p-6 lg:p-8">
+      <main className="flex-1 transition-all duration-300 flex justify-center">
+        <div className="w-full max-w-[1600px] p-4 md:p-6 lg:p-8">
           {/* Breadcrumb */}
           <div className="text-sm text-muted-foreground mb-4">
             <a href="/" className="hover:text-primary transition-colors">Dashboard</a>

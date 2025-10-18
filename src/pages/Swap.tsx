@@ -50,13 +50,14 @@ const Swap = () => {
 
   if (selectingToken) {
     return (
-      <div className="min-h-screen text-foreground flex">
+      <div className="min-h-screen text-foreground flex relative">
         <Starfield />
         <AppSidebar />
         
-        <main className="flex-1 lg:ml-64 transition-all duration-300">
+        <main className="flex-1 transition-all duration-300 relative z-10 flex justify-center">
+          <div className="w-full max-w-[1600px] p-4 md:p-6 lg:p-8 flex flex-col items-center">
           {/* Floating Upper Navbar */}
-          <div className="sticky top-4 z-40 px-4 md:px-6">
+          <div className="sticky top-4 z-40 w-full px-4 md:px-6 mb-6">
             <div className="max-w-md mx-auto bg-card/95 backdrop-blur-md rounded-2xl border border-border shadow-lg">
               <div className="p-2 flex gap-2">
                 <button className="px-6 py-2.5 font-medium bg-primary text-primary-foreground rounded-xl transition-all">
@@ -78,7 +79,7 @@ const Swap = () => {
             </div>
           </div>
 
-          <div className="p-4 md:p-6 lg:p-8">
+          <div className="w-full">
             <button
               onClick={() => setSelectingToken(null)}
               className="mb-6 flex items-center text-muted-foreground hover:text-foreground transition-colors max-w-md mx-auto"
@@ -163,19 +164,21 @@ const Swap = () => {
               </CardContent>
             </Card>
           </div>
+          </div>
         </main>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen text-foreground flex">
+    <div className="min-h-screen text-foreground flex relative">
       <Starfield />
       <AppSidebar />
       
-      <main className="flex-1 lg:ml-64 transition-all duration-300">
+      <main className="flex-1 transition-all duration-300 relative z-10 flex justify-center">
+        <div className="w-full max-w-[1600px] p-4 md:p-6 lg:p-8 flex flex-col items-center">
         {/* Floating Upper Navbar */}
-        <div className="sticky top-4 z-40 px-4 md:px-6">
+        <div className="sticky top-4 z-40 w-full px-4 md:px-6 mb-6">
           <div className="max-w-md mx-auto bg-card/95 backdrop-blur-md rounded-2xl border border-border shadow-lg">
             <div className="p-2 flex gap-2">
               <button className="px-6 py-2.5 font-medium bg-primary text-primary-foreground rounded-xl transition-all">
@@ -197,7 +200,7 @@ const Swap = () => {
           </div>
         </div>
 
-        <div className="p-4 md:p-6 lg:p-8 flex items-center justify-center min-h-[calc(100vh-6rem)]">
+        <div className="w-full flex items-center justify-center min-h-[calc(100vh-6rem)]">
           <div className="w-full max-w-md">
             <Card className="bg-card/95 backdrop-blur-md border-border shadow-xl rounded-2xl">
               <CardContent className="p-6 space-y-1">
@@ -389,6 +392,7 @@ const Swap = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
         </div>
       </main>
     </div>
