@@ -11,6 +11,8 @@ import {
   FileText,
   Menu,
   X,
+  Bot,
+  Rocket,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -28,6 +30,14 @@ const mainNavItems: NavItem[] = [
   { title: "Vote", icon: Vote, href: "/vote" },
   { title: "Lock", icon: Lock, href: "/lock" },
   { title: "Incentivize", icon: Sparkles, href: "/incentivize" },
+];
+
+const aiNavItems: NavItem[] = [
+  { title: "AI Assistant", icon: Bot, href: "/ai" },
+];
+
+const deploymentNavItems: NavItem[] = [
+  { title: "Deployments", icon: Rocket, href: "/deployments" },
 ];
 
 const bottomNavItems: NavItem[] = [
@@ -115,6 +125,122 @@ export function AppSidebar() {
               </NavLink>
             );
           })}
+
+          {/* AI Section */}
+          {isOpen && (
+            <div className="pt-6">
+              <h3 className="px-3 mb-2 text-xs font-semibold text-muted-foreground/70 uppercase tracking-wider">
+                AI
+              </h3>
+              {aiNavItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <NavLink
+                    key={item.href}
+                    to={item.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    className={({ isActive }) =>
+                      cn(
+                        "flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 group relative",
+                        isActive
+                          ? "bg-primary/20 text-primary shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+                          : "text-muted-foreground hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_15px_rgba(59,130,246,0.2)]"
+                      )
+                    }
+                  >
+                    <Icon className="h-5 w-5 flex-shrink-0" />
+                    <span className="font-medium animate-fade-in">{item.title}</span>
+                  </NavLink>
+                );
+              })}
+            </div>
+          )}
+
+          {!isOpen && (
+            <div className="pt-6">
+              {aiNavItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <NavLink
+                    key={item.href}
+                    to={item.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    className={({ isActive }) =>
+                      cn(
+                        "flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 group relative",
+                        isActive
+                          ? "bg-primary/20 text-primary shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+                          : "text-muted-foreground hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_15px_rgba(59,130,246,0.2)]"
+                      )
+                    }
+                  >
+                    <Icon className="h-5 w-5 flex-shrink-0" />
+                    <div className="absolute left-full ml-2 px-3 py-2 bg-card rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 border border-border">
+                      <span className="text-sm font-medium">{item.title}</span>
+                    </div>
+                  </NavLink>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Deployment Section */}
+          {isOpen && (
+            <div className="pt-4">
+              <h3 className="px-3 mb-2 text-xs font-semibold text-muted-foreground/70 uppercase tracking-wider">
+                Deployment
+              </h3>
+              {deploymentNavItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <NavLink
+                    key={item.href}
+                    to={item.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    className={({ isActive }) =>
+                      cn(
+                        "flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 group relative",
+                        isActive
+                          ? "bg-primary/20 text-primary shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+                          : "text-muted-foreground hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_15px_rgba(59,130,246,0.2)]"
+                      )
+                    }
+                  >
+                    <Icon className="h-5 w-5 flex-shrink-0" />
+                    <span className="font-medium animate-fade-in">{item.title}</span>
+                  </NavLink>
+                );
+              })}
+            </div>
+          )}
+
+          {!isOpen && (
+            <div className="pt-4">
+              {deploymentNavItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <NavLink
+                    key={item.href}
+                    to={item.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    className={({ isActive }) =>
+                      cn(
+                        "flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 group relative",
+                        isActive
+                          ? "bg-primary/20 text-primary shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+                          : "text-muted-foreground hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_15px_rgba(59,130,246,0.2)]"
+                      )
+                    }
+                  >
+                    <Icon className="h-5 w-5 flex-shrink-0" />
+                    <div className="absolute left-full ml-2 px-3 py-2 bg-card rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 border border-border">
+                      <span className="text-sm font-medium">{item.title}</span>
+                    </div>
+                  </NavLink>
+                );
+              })}
+            </div>
+          )}
         </nav>
 
         {/* Bottom Navigation */}

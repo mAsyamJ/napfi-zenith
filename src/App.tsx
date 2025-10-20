@@ -9,6 +9,10 @@ import VaultDetail from "./pages/VaultDetail";
 import Swap from "./pages/Swap";
 import Pro from "./pages/Pro";
 import Portfolio from "./pages/Portfolio";
+import AI from "./pages/AI";
+import Deployments from "./pages/Deployments";
+import DeployToken from "./pages/DeployToken";
+import DeployVault from "./pages/DeployVault";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +30,10 @@ const App = () => (
             <Route path="/swap" element={<Swap />} />
             <Route path="/pro" element={<Pro />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/ai" element={<AI />} />
+            <Route path="/deployments" element={<Deployments />} />
+            <Route path="/deploy/token" element={<DeployToken />} />
+            <Route path="/deploy/vault" element={<DeployVault />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
