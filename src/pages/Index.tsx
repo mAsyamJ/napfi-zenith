@@ -11,7 +11,8 @@ import { ActivityLog } from "@/components/Dashboard/ActivityLog";
 const Index = () => {
   return (
     <AppLayout>
-      <div className={cn(
+      <div>
+        <div className={cn(
         "mx-auto max-w-7xl transition-all duration-300",
         "px-4 md:px-6 lg:px-8"
       )}>
@@ -25,11 +26,9 @@ const Index = () => {
 
           <VaultsExplorer />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <DexAggregator />
-            <ActivityLog />
-          </div>
+          {/* DexAggregator and ActivityLog removed as requested */}
         </div>
+      </div>
     </AppLayout>
   );
 };

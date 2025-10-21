@@ -1,23 +1,38 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface SidebarContextType {
   isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
+  setIsOpen: (open: boolean) => void;
 }
 
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 
-export function SidebarProvider({ children }: { children: React.ReactNode }) {
+export function SidebarProvider({ children }: { children: ReactNode }) {
+  // Initialize from localStorage if available, otherwise default to true for desktop and false for mobile
   const [isOpen, setIsOpen] = useState(() => {
-    // Get initial state from localStorage
     const saved = localStorage.getItem('sidebarOpen');
-    return saved !== null ? JSON.parse(saved) : true;
+    if (saved !== null) {
+      return JSON.parse(saved);
+    }
+    return window.innerWidth >= 1024; // true for desktop (lg breakpoint)
   });
 
-  // Save to localStorage whenever state changes
+  // Persist sidebar state to localStorage
   useEffect(() => {
     localStorage.setItem('sidebarOpen', JSON.stringify(isOpen));
   }, [isOpen]);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1024) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <SidebarContext.Provider value={{ isOpen, setIsOpen }}>

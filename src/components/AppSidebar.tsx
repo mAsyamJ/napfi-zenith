@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useSidebar } from "@/contexts/SidebarContext";
 import { NavLink } from "react-router-dom";
+import { useSidebar } from "@/contexts/SidebarContext";
 import {
   LayoutDashboard,
   ArrowLeftRight,
@@ -46,34 +46,9 @@ const bottomNavItems: NavItem[] = [
   { title: "Terms of Use", icon: FileText, href: "/terms" },
 ];
 
-interface AppSidebarProps {
-  isOpen?: boolean;
-  onOpenChange?: (isOpen: boolean) => void;
-}
-
-export function AppSidebar({ isOpen: propIsOpen, onOpenChange }: AppSidebarProps) {
-  const ctx = (() => {
-    try {
-      return useSidebar();
-    } catch (e) {
-      return undefined as any;
-    }
-  })();
-
-  const [isOpenInternal, setIsOpenInternal] = useState(true);
+export function AppSidebar() {
+  const { isOpen, setIsOpen } = useSidebar();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-
-  // Prefer prop, then context, then internal state
-  const isOpen = propIsOpen ?? ctx?.isOpen ?? isOpenInternal;
-  const setIsOpen = (value: boolean) => {
-    if (propIsOpen !== undefined) {
-      onOpenChange?.(value);
-    } else if (ctx) {
-      ctx.setIsOpen(value);
-    } else {
-      setIsOpenInternal(value);
-    }
-  };
 
   return (
     <>
@@ -98,7 +73,7 @@ export function AppSidebar({ isOpen: propIsOpen, onOpenChange }: AppSidebarProps
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed left-0 top-0 h-screen bg-[#0B0E11] border-r border-border/50 z-40 transition-all duration-300 ease-in-out flex flex-col shadow-2xl",
+          "fixed left-0 top-0 h-screen bg-[#0B0E11] border-r border-border/50 z-50 transition-all duration-300 ease-in-out flex flex-col shadow-2xl",
           isOpen ? "w-64" : "w-20",
           // Mobile responsive
           isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"

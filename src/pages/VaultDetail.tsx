@@ -98,7 +98,8 @@ const VaultDetail = () => {
     dataLabels: { enabled: false }
   };
   return (
-    <AppLayout>
+    <AppLayout className="px-12 md:px-16 lg:px-24">
+      <div>
         <div>
           {/* Breadcrumb */}
           <div className="text-sm text-muted-foreground mb-4">
@@ -301,7 +302,7 @@ const VaultDetail = () => {
           <StrategiesTable />
 
           {/* Bottom Grid - Activity & Notifications */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-12">
             {/* Your Activity */}
             <Card className="bg-card border-border shadow-sm">
               <CardHeader>
@@ -374,6 +375,7 @@ const VaultDetail = () => {
             </Card>
           </div>
         </div>
+      </div>
     </AppLayout>
   );
 };

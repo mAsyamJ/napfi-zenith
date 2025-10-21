@@ -81,7 +81,7 @@ const DeployToken = () => {
 
   return (
     <AppLayout>
-        <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8">
             <Button
@@ -516,8 +516,6 @@ const DeployToken = () => {
             </div>
           </div>
         </div>
-      
-      {/* AI Chat Sidebar */}
       {aiSidebarOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex">
           <div className="ml-auto w-96 h-full bg-card border-l border-border shadow-2xl">

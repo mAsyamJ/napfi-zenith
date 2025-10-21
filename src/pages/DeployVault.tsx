@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppLayout } from "@/components/AppLayout";
+import { AppSidebar } from "@/components/AppSidebar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -147,8 +147,11 @@ const DeployVault = () => {
   ];
 
   return (
-    <AppLayout>
-      <div className="p-4 md:p-6 lg:p-8 max-w-5xl mx-auto">
+    <div className="min-h-screen bg-background text-foreground flex">
+      <AppSidebar />
+      
+      <main className="flex-1 lg:ml-64 transition-all duration-300">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8">
             <Button
@@ -750,6 +753,7 @@ const DeployVault = () => {
             </div>
           </div>
         </div>
+      </main>
 
       {/* AI Chat Sidebar */}
       {aiSidebarOpen && (
@@ -792,7 +796,7 @@ const DeployVault = () => {
           </div>
         </div>
       )}
-    </AppLayout>
+    </div>
   );
 };
 
