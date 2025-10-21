@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import vaultsData from "@/data/mockVaults.json";
+import { mockTokens } from "@/data/mockTokens";
 
 type SortKey = "name" | "apy" | "tvl" | "deposited" | "dailyYield" | "safetyScore";
 type SortOrder = "asc" | "desc" | null;
@@ -194,14 +195,15 @@ export const VaultsExplorer = () => {
               {/* Vault Name + Tokens */}
               <div className="col-span-3 flex items-center gap-3">
                 <div className="flex items-center -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 border-2 border-card flex items-center justify-center text-xs font-bold">
-                    {vault.tokens[0].slice(0, 2)}
-                  </div>
-                  {vault.tokens[1] && (
-                    <div className="w-8 h-8 rounded-full bg-secondary/20 border-2 border-card flex items-center justify-center text-xs font-bold">
-                      {vault.tokens[1].slice(0, 2)}
-                    </div>
-                  )}
+                  {vault.tokens.slice(0, 2).map((sym, idx) => {
+                    const t = mockTokens.find((mt) => mt.symbol === sym);
+                    const bg = idx === 0 ? "bg-primary/20" : "bg-secondary/20";
+                    return (
+                      <div key={sym} className={`w-8 h-8 rounded-full ${bg} border-2 border-card flex items-center justify-center text-sm font-bold`}>
+                        {t?.symbolGlyph ?? sym.slice(0, 2)}
+                      </div>
+                    );
+                  })}
                 </div>
                 <div>
                   <div className="font-semibold text-foreground group-hover:text-primary transition-colors">

@@ -116,7 +116,10 @@ const Swap = () => {
                             }}
                           />
                           <div className="text-left">
-                            <div className="font-bold">{token.symbol}</div>
+                            <div className="font-bold">
+                              <span className="mr-1">{token.symbolGlyph ?? token.symbol}</span>
+                              {token.symbol}
+                            </div>
                             <div className="text-sm text-muted-foreground">{token.name}</div>
                           </div>
                         </div>
@@ -234,7 +237,10 @@ const Swap = () => {
                               e.currentTarget.src = "https://cryptologos.cc/logos/placeholder-logo.png";
                             }}
                           />
-                          <span className="font-bold">{payToken.symbol}</span>
+                          <span className="font-bold flex items-center gap-1">
+                            <span>{payToken.symbolGlyph ?? payToken.symbol}</span>
+                            <span>{payToken.symbol}</span>
+                          </span>
                           <ChevronDown className="h-4 w-4 text-muted-foreground" />
                         </button>
                       </HoverCardTrigger>
@@ -243,7 +249,10 @@ const Swap = () => {
                           <div className="flex items-center gap-3">
                             <img src={payToken.logo} alt={payToken.symbol} className="w-12 h-12 rounded-full" />
                             <div>
-                              <h4 className="font-bold text-lg">{payToken.symbol}</h4>
+                              <h4 className="font-bold text-lg">
+                                <span className="mr-1">{payToken.symbolGlyph ?? payToken.symbol}</span>
+                                {payToken.symbol}
+                              </h4>
                               <p className="text-sm text-muted-foreground">{payToken.name}</p>
                             </div>
                           </div>
@@ -320,7 +329,10 @@ const Swap = () => {
                               e.currentTarget.src = "https://cryptologos.cc/logos/placeholder-logo.png";
                             }}
                           />
-                          <span className="font-bold">{receiveToken.symbol}</span>
+                          <span className="font-bold flex items-center gap-1">
+                            <span>{receiveToken.symbolGlyph ?? receiveToken.symbol}</span>
+                            <span>{receiveToken.symbol}</span>
+                          </span>
                           <ChevronDown className="h-4 w-4 text-muted-foreground" />
                         </button>
                       </HoverCardTrigger>
@@ -329,7 +341,10 @@ const Swap = () => {
                           <div className="flex items-center gap-3">
                             <img src={receiveToken.logo} alt={receiveToken.symbol} className="w-12 h-12 rounded-full" />
                             <div>
-                              <h4 className="font-bold text-lg">{receiveToken.symbol}</h4>
+                              <h4 className="font-bold text-lg">
+                                <span className="mr-1">{receiveToken.symbolGlyph ?? receiveToken.symbol}</span>
+                                {receiveToken.symbol}
+                              </h4>
                               <p className="text-sm text-muted-foreground">{receiveToken.name}</p>
                             </div>
                           </div>

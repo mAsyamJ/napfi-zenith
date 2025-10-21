@@ -1,5 +1,6 @@
 export interface Token {
   symbol: string;
+  symbolGlyph?: string;
   name: string;
   price: number;
   change: string;
@@ -15,6 +16,7 @@ export interface Token {
 export const mockTokens: Token[] = [
   {
     symbol: "USDC",
+    symbolGlyph: "🪙",
     name: "USD Coin",
     price: 1.0,
     change: "+0.02%",
@@ -28,6 +30,7 @@ export const mockTokens: Token[] = [
   },
   {
     symbol: "ETH",
+    symbolGlyph: "Ξ",
     name: "Ethereum",
     price: 1985.42,
     change: "-0.34%",
@@ -41,6 +44,7 @@ export const mockTokens: Token[] = [
   },
   {
     symbol: "COW",
+    symbolGlyph: "🐮",
     name: "CoW Protocol",
     price: 0.25,
     change: "+1.1%",
@@ -54,6 +58,7 @@ export const mockTokens: Token[] = [
   },
   {
     symbol: "DAI",
+    symbolGlyph: "🟡",
     name: "Dai Stablecoin",
     price: 1.0,
     change: "0.00%",
@@ -67,6 +72,7 @@ export const mockTokens: Token[] = [
   },
   {
     symbol: "ARB",
+    symbolGlyph: "🌀",
     name: "Arbitrum",
     price: 1.14,
     change: "-0.8%",
@@ -80,6 +86,7 @@ export const mockTokens: Token[] = [
   },
   {
     symbol: "UNI",
+    symbolGlyph: "🦄",
     name: "Uniswap",
     price: 4.21,
     change: "+0.7%",
@@ -93,6 +100,7 @@ export const mockTokens: Token[] = [
   },
   {
     symbol: "MATIC",
+    symbolGlyph: "⬢",
     name: "Polygon",
     price: 0.56,
     change: "-1.2%",
@@ -106,6 +114,7 @@ export const mockTokens: Token[] = [
   },
   {
     symbol: "LINK",
+    symbolGlyph: "🔗",
     name: "Chainlink",
     price: 11.32,
     change: "+2.3%",
@@ -119,6 +128,7 @@ export const mockTokens: Token[] = [
   },
   {
     symbol: "AAVE",
+    symbolGlyph: "👻",
     name: "Aave",
     price: 64.78,
     change: "-0.5%",
@@ -132,6 +142,7 @@ export const mockTokens: Token[] = [
   },
   {
     symbol: "COMP",
+    symbolGlyph: "🧮",
     name: "Compound",
     price: 47.15,
     change: "+0.9%",

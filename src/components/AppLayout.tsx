@@ -7,21 +7,17 @@ export function AppLayout({ children, className }: { children: React.ReactNode; 
   const { isOpen: sidebarOpen } = useSidebar();
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
-      {/* Top Gradient */}
-      <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-black via-background to-transparent pointer-events-none" />
-      
-      {/* Top Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-96 bg-[#ffffff] opacity-[0.02] blur-[100px] pointer-events-none" />
-      
-      {/* Bottom Blue Gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-[#26a0da]/20 via-[#26a0da]/5 to-transparent pointer-events-none" />
-      
-      {/* Bottom Dark Gradient (layered over blue) */}
-      <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-t from-black via-background/80 to-transparent pointer-events-none" />
-      
-      {/* Bottom Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-96 bg-[#ffffff] opacity-[0.02] blur-[100px] pointer-events-none" />
+    <div className="min-h-screen bg-gradient-to-br from-background via-[#26a0da]/5 to-background relative overflow-hidden">
+      {/* Background Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-[#26a0da]/10 to-background pointer-events-none" />
+
+      {/* Additional Gradient Accents */}
+      <div className="absolute bottom-0 left-0 w-full h-[120%] bg-gradient-to-tr from-[#26a0da]/20 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-0 w-full h-[120%] bg-gradient-to-bl from-[#26a0da]/10 via-transparent to-transparent pointer-events-none" />
+
+      {/* Soft Glows */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-[#26a0da] opacity-[0.03] blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-[#ffffff] opacity-[0.02] blur-[120px] pointer-events-none" />
 
       <div className="flex relative z-10">
         <AppSidebar />
