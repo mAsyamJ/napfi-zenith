@@ -1,4 +1,5 @@
 import { useParams, Navigate } from "react-router-dom";
+import { cn } from "@/lib/utils";
 import { AppSidebar } from "@/components/AppSidebar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -15,10 +16,12 @@ import { ApexOptions } from "apexcharts";
 import { useState } from "react";
 import mockVaults from "@/data/mockVaults.json";
 import { StrategiesTable } from "@/components/Dashboard/StrategiesTable";
+import { AppLayout } from "@/components/AppLayout";
 
 const VaultDetail = () => {
   const { id } = useParams();
   const vault = mockVaults.find(v => v.id === id);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [depositTab, setDepositTab] = useState<"deposit" | "withdraw">("deposit");
   const [timeframe, setTimeframe] = useState<"1D" | "1W" | "1M" | "ALL">("1D");
   const [strategyTimeframe, setStrategyTimeframe] = useState<"7D" | "30D" | "90D">("7D");
@@ -94,13 +97,9 @@ const VaultDetail = () => {
     tooltip: { theme: 'dark' },
     dataLabels: { enabled: false }
   };
-
   return (
-    <div className="min-h-screen bg-background text-foreground flex">
-      <AppSidebar />
-      
-      <main className="flex-1 lg:ml-64 transition-all duration-300">
-        <div className="p-4 md:p-6 lg:p-8">
+    <AppLayout>
+        <div>
           {/* Breadcrumb */}
           <div className="text-sm text-muted-foreground mb-4">
             <a href="/" className="hover:text-primary transition-colors">Dashboard</a>
@@ -375,9 +374,7 @@ const VaultDetail = () => {
             </Card>
           </div>
         </div>
-      </main>
-    </div>
+    </AppLayout>
   );
 };
-
 export default VaultDetail;

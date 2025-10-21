@@ -1,4 +1,5 @@
-import { AppSidebar } from "@/components/AppSidebar";
+import { cn } from "@/lib/utils";
+import { AppLayout } from "@/components/AppLayout";
 import { Header } from "@/components/Dashboard/Header";
 import { PortfolioStats } from "@/components/Dashboard/PortfolioStats";
 import { PerformanceChart } from "@/components/Dashboard/PerformanceChart";
@@ -9,11 +10,11 @@ import { ActivityLog } from "@/components/Dashboard/ActivityLog";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground flex">
-      <AppSidebar />
-      
-      <main className="flex-1 lg:ml-64 transition-all duration-300">
-        <div className="p-4 md:p-6 lg:p-8">
+    <AppLayout>
+      <div className={cn(
+        "mx-auto max-w-7xl transition-all duration-300",
+        "px-4 md:px-6 lg:px-8"
+      )}>
           <Header />
           <PortfolioStats />
           
@@ -29,8 +30,7 @@ const Index = () => {
             <ActivityLog />
           </div>
         </div>
-      </main>
-    </div>
+    </AppLayout>
   );
 };
 

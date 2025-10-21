@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppSidebar } from "@/components/AppSidebar";
+import { AppLayout } from "@/components/AppLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -411,11 +411,8 @@ Market Insights:
   }, [messages]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex">
-      <AppSidebar />
-      
-      <main className="flex-1 lg:ml-64 transition-all duration-300">
-        <div className="h-screen flex flex-col">
+    <AppLayout>
+      <div className={cn("h-screen flex flex-col mx-auto max-w-7xl transition-all duration-300","px-4 md:px-6 lg:px-8")}>
           {/* Header */}
           <div className="border-b border-border/50 bg-card/50 backdrop-blur-sm">
             <div className="p-4 md:p-6">
@@ -626,8 +623,8 @@ Market Insights:
             </div>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </AppLayout>
   );
 };
 

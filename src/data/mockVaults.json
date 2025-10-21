@@ -1,12 +1,12 @@
 [
   {
     "id": "1",
-    "name": "stETH/WETH",
+    "name": "nSwifties Vault",
     "token": "ETH",
     "tokens": ["ETH", "WETH"],
     "network": "ethereum",
     "platform": "Curve (Convex)",
-    "category": "LP",
+    "category": "Creator LP",
     "apy": 6.8,
     "dailyYield": 0.0186,
     "tvl": 324500000,
@@ -14,16 +14,16 @@
     "deposited": 0,
     "risk": "low",
     "safetyScore": 95,
-    "description": "Restaking vault for staked ETH with EigenLayer protocol"
+    "description": "Taylor Swift’s community-driven restaking vault backed by stETH/WETH yield strategies on EigenLayer — steady returns for loyal Swifties."
   },
   {
     "id": "2",
-    "name": "USDC/USDT",
+    "name": "nPewVault",
     "token": "USDC",
     "tokens": ["USDC", "USDT"],
     "network": "ethereum",
     "platform": "Curve (Convex)",
-    "category": "Stablecoins",
+    "category": "Creator Stable",
     "apy": 4.2,
     "dailyYield": 0.0115,
     "tvl": 189700000,
@@ -31,16 +31,16 @@
     "deposited": 0,
     "risk": "low",
     "safetyScore": 98,
-    "description": "Stable lending vault optimized for USDC yields"
+    "description": "PewDiePie’s chill stablecoin vault — lending USDC and USDT for smooth, consistent yields optimized through Curve’s stable pools."
   },
   {
     "id": "3",
-    "name": "DAI/ETH LP",
+    "name": "nEthos LP",
     "token": "DAI",
     "tokens": ["DAI", "ETH"],
     "network": "ethereum",
     "platform": "Uniswap V3",
-    "category": "LP",
+    "category": "Creator LP",
     "apy": 12.4,
     "dailyYield": 0.034,
     "tvl": 87300000,
@@ -48,16 +48,16 @@
     "deposited": 0,
     "risk": "medium",
     "safetyScore": 85,
-    "description": "Liquidity provision vault for DAI-ETH pair"
+    "description": "MrBeast’s vault for impactful liquidity — combining DAI and ETH in Uniswap V3 for creators who want both growth and giving power."
   },
   {
     "id": "4",
-    "name": "AAVE Boosted",
+    "name": "nKSI Boosted",
     "token": "AAVE",
     "tokens": ["AAVE"],
     "network": "ethereum",
     "platform": "AAVE V3",
-    "category": "Single",
+    "category": "Creator Single",
     "apy": 19.7,
     "dailyYield": 0.054,
     "tvl": 42100000,
@@ -65,16 +65,16 @@
     "deposited": 0,
     "risk": "high",
     "safetyScore": 72,
-    "description": "High-yield AAVE leveraged lending strategy"
+    "description": "KSI’s boosted AAVE lending vault — for high-risk, high-return traders in the Sidemen community who like aggressive compounding."
   },
   {
     "id": "5",
-    "name": "LINK Staking",
+    "name": "nChainGang",
     "token": "LINK",
     "tokens": ["LINK"],
     "network": "arbitrum",
     "platform": "Chainlink",
-    "category": "Single",
+    "category": "Creator Staking",
     "apy": 8.9,
     "dailyYield": 0.0244,
     "tvl": 67800000,
@@ -82,16 +82,16 @@
     "deposited": 0,
     "risk": "medium",
     "safetyScore": 90,
-    "description": "LINK staking with auto-compounding rewards"
+    "description": "Chainlink-inspired staking vault curated for data-driven creators — auto-compounding LINK rewards through decentralized oracle power."
   },
   {
     "id": "6",
-    "name": "UNI/ETH CLM",
+    "name": "nNinjaYield",
     "token": "UNI",
     "tokens": ["UNI", "ETH"],
     "network": "base",
     "platform": "Beefy CLM",
-    "category": "CLM",
+    "category": "Creator CLM",
     "apy": 22.3,
     "dailyYield": 0.0611,
     "tvl": 35200000,
@@ -99,16 +99,16 @@
     "deposited": 0,
     "risk": "high",
     "safetyScore": 78,
-    "description": "Automated UNI yield farming with high APY"
+    "description": "Ninja’s fast-action vault — combining UNI and ETH on Base network with Beefy’s CLM automation for high-yield, gamer-style performance."
   },
   {
     "id": "7",
-    "name": "BTC/USDC",
+    "name": "nMKBHD Blue Vault",
     "token": "BTC",
     "tokens": ["BTC", "USDC"],
     "network": "polygon",
     "platform": "Balancer (Aura)",
-    "category": "Blue Chips",
+    "category": "Creator Blue Chips",
     "apy": 7.5,
     "dailyYield": 0.0205,
     "tvl": 156000000,
@@ -116,16 +116,16 @@
     "deposited": 0,
     "risk": "low",
     "safetyScore": 92,
-    "description": "BTC liquidity pool with stable yields"
+    "description": "MKBHD’s tech-grade BTC/USDC blue-chip vault — sleek, balanced, and optimized with Aura Finance for long-term digital asset believers."
   },
   {
     "id": "8",
-    "name": "PEPE Boosted",
+    "name": "nElon MemeBoost",
     "token": "PEPE",
     "tokens": ["PEPE"],
     "network": "ethereum",
     "platform": "Yearn V3",
-    "category": "Memes",
+    "category": "Creator Memes",
     "apy": 45.2,
     "dailyYield": 0.124,
     "tvl": 12400000,
@@ -133,6 +133,6 @@
     "deposited": 0,
     "risk": "high",
     "safetyScore": 45,
-    "description": "High risk meme token vault"
+    "description": "Elon Musk’s meme-powered vault — high-volatility PEPE farming optimized by Yearn V3 strategies for the ultimate degen believers."
   }
 ]

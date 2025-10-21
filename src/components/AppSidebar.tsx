@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSidebar } from "@/contexts/SidebarContext";
 import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
@@ -45,9 +46,34 @@ const bottomNavItems: NavItem[] = [
   { title: "Terms of Use", icon: FileText, href: "/terms" },
 ];
 
-export function AppSidebar() {
-  const [isOpen, setIsOpen] = useState(true);
+interface AppSidebarProps {
+  isOpen?: boolean;
+  onOpenChange?: (isOpen: boolean) => void;
+}
+
+export function AppSidebar({ isOpen: propIsOpen, onOpenChange }: AppSidebarProps) {
+  const ctx = (() => {
+    try {
+      return useSidebar();
+    } catch (e) {
+      return undefined as any;
+    }
+  })();
+
+  const [isOpenInternal, setIsOpenInternal] = useState(true);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  // Prefer prop, then context, then internal state
+  const isOpen = propIsOpen ?? ctx?.isOpen ?? isOpenInternal;
+  const setIsOpen = (value: boolean) => {
+    if (propIsOpen !== undefined) {
+      onOpenChange?.(value);
+    } else if (ctx) {
+      ctx.setIsOpen(value);
+    } else {
+      setIsOpenInternal(value);
+    }
+  };
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AppSidebar } from "@/components/AppSidebar";
+import { AppLayout } from "@/components/AppLayout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/hover-card";
 import { useNavigate } from "react-router-dom";
 import Starfield from "@/components/Starfield";
+import { cn } from "@/lib/utils";
 
 const Swap = () => {
   const navigate = useNavigate();
@@ -50,13 +51,11 @@ const Swap = () => {
 
   if (selectingToken) {
     return (
-      <div className="min-h-screen text-foreground flex">
+      <AppLayout>
         <Starfield />
-        <AppSidebar />
-        
-        <main className="flex-1 lg:ml-64 transition-all duration-300">
-          {/* Floating Upper Navbar */}
-          <div className="sticky top-4 z-40 px-4 md:px-6">
+        <div className={cn("mx-auto max-w-7xl transition-all duration-300","px-4 md:px-6 lg:px-8")}>
+            {/* Floating Upper Navbar */}
+            <div className="sticky top-4 z-40">
             <div className="max-w-md mx-auto bg-card/95 backdrop-blur-md rounded-2xl border border-border shadow-lg">
               <div className="p-2 flex gap-2">
                 <button className="px-6 py-2.5 font-medium bg-primary text-primary-foreground rounded-xl transition-all">
@@ -163,50 +162,48 @@ const Swap = () => {
               </CardContent>
             </Card>
           </div>
-        </main>
-      </div>
+        </div>
+      </AppLayout>
     );
   }
 
   return (
-    <div className="min-h-screen text-foreground flex">
+    <AppLayout>
       <Starfield />
-      <AppSidebar />
-      
-      <main className="flex-1 lg:ml-64 transition-all duration-300">
-        {/* Floating Upper Navbar */}
-        <div className="sticky top-4 z-40 px-4 md:px-6">
-          <div className="max-w-md mx-auto bg-card/95 backdrop-blur-md rounded-2xl border border-border shadow-lg">
-            <div className="p-2 flex gap-2">
-              <button className="px-6 py-2.5 font-medium bg-primary text-primary-foreground rounded-xl transition-all">
-                Swap
-              </button>
-              <button 
-                onClick={() => navigate("/pro")}
-                className="px-6 py-2.5 font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-all"
-              >
-                Pro
-              </button>
-              <button 
-                onClick={() => navigate("/portfolio")}
-                className="px-6 py-2.5 font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-all"
-              >
-                Portfolio
-              </button>
+      <div className={cn("mx-auto max-w-7xl transition-all duration-300","px-4 md:px-6 lg:px-8")}>
+          {/* Floating Upper Navbar */}
+          <div className="sticky top-4 z-40">
+            <div className="max-w-md mx-auto bg-card/95 backdrop-blur-md rounded-2xl border border-border shadow-lg">
+              <div className="p-2 flex gap-2">
+                <button className="px-6 py-2.5 font-medium bg-primary text-primary-foreground rounded-xl transition-all">
+                  Swap
+                </button>
+                <button 
+                  onClick={() => navigate("/pro")}
+                  className="px-6 py-2.5 font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-all"
+                >
+                  Pro
+                </button>
+                <button 
+                  onClick={() => navigate("/portfolio")}
+                  className="px-6 py-2.5 font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-all"
+                >
+                  Portfolio
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="p-4 md:p-6 lg:p-8 flex items-center justify-center min-h-[calc(100vh-6rem)]">
-          <div className="w-full max-w-md">
-            <Card className="bg-card/95 backdrop-blur-md border-border shadow-xl rounded-2xl">
-              <CardContent className="p-6 space-y-1">
-                {/* Settings button */}
-                <div className="flex justify-end mb-2">
-                  <button className="p-2 hover:bg-muted rounded-lg transition-colors">
-                    <Settings className="h-5 w-5 text-muted-foreground" />
-                  </button>
-                </div>
+          <div className="p-4 md:p-6 lg:p-8 flex items-center justify-center min-h-[calc(100vh-6rem)]">
+            <div className="w-full max-w-md">
+              <Card className="bg-card/95 backdrop-blur-md border-border shadow-xl rounded-2xl">
+                <CardContent className="p-6 space-y-1">
+                  {/* Settings button */}
+                  <div className="flex justify-end mb-2">
+                    <button className="p-2 hover:bg-muted rounded-lg transition-colors">
+                      <Settings className="h-5 w-5 text-muted-foreground" />
+                    </button>
+                  </div>
 
                 {/* Pay Section */}
                 <div className="bg-muted/30 rounded-2xl p-4 border border-border/50">
@@ -388,11 +385,11 @@ const Swap = () => {
                 </Button>
               </CardContent>
             </Card>
+            </div>
           </div>
         </div>
-      </main>
-    </div>
-  );
-};
+      </AppLayout>
+    );
+  };
 
-export default Swap;
+  export default Swap;

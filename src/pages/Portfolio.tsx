@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/AppSidebar";
+import { AppLayout } from "@/components/AppLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 
@@ -6,12 +6,9 @@ const Portfolio = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex">
-      <AppSidebar />
-      
-      <main className="flex-1 lg:ml-64 transition-all duration-300">
-        {/* Upper Navbar */}
-        <div className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-sm">
+    <AppLayout>
+      {/* Upper Navbar */}
+      <div className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-sm">
           <div className="p-4 md:p-6">
             <div className="flex gap-6">
               <button 
@@ -62,8 +59,7 @@ const Portfolio = () => {
             </Card>
           </div>
         </div>
-      </main>
-    </div>
+    </AppLayout>
   );
 };
 

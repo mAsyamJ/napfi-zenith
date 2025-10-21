@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppSidebar } from "@/components/AppSidebar";
+import { AppLayout } from "@/components/AppLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -80,11 +80,8 @@ const DeployToken = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex">
-      <AppSidebar />
-      
-      <main className="flex-1 lg:ml-64 transition-all duration-300">
-        <div className="p-4 md:p-6 lg:p-8 max-w-4xl mx-auto">
+    <AppLayout>
+        <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-8">
             <Button
@@ -519,8 +516,7 @@ const DeployToken = () => {
             </div>
           </div>
         </div>
-      </main>
-
+      
       {/* AI Chat Sidebar */}
       {aiSidebarOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex">
@@ -562,7 +558,7 @@ const DeployToken = () => {
           </div>
         </div>
       )}
-    </div>
+    </AppLayout>
   );
 };
 
