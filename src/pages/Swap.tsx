@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { TopNav } from "@/components/TopNav";
-import Starfield from "@/components/Starfield";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -48,8 +47,7 @@ const Swap = () => {
 
   if (selectingToken) {
     return (
-      <div className="min-h-screen bg-background text-foreground relative">
-        <Starfield />
+      <div className="min-h-screen bg-background text-foreground">
         <TopNav />
         
         <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -145,8 +143,7 @@ const Swap = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative">
-      <Starfield />
+    <div className="min-h-screen bg-background text-foreground">
       <TopNav />
       
       <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">

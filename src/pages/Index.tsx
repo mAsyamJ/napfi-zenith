@@ -1,13 +1,55 @@
 import { TopNav } from "@/components/TopNav";
-import Starfield from "@/components/Starfield";
-import { Search } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight, SlidersHorizontal, ChevronDown } from "lucide-react";
 import mockVaults from "@/data/mockVaults.json";
 import { Link } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
+  const [activeCategory, setActiveCategory] = useState("All Vaults");
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const categories = [
+    "All Vaults",
+    "DeFi",
+    "RWAs",
+    "Creator Vaults",
+    "Strategy Marketplace",
+    "Stable Yield",
+    "High Conviction"
+  ];
+
+  const updateScrollButtons = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
+    }
+  };
+
+  useEffect(() => {
+    updateScrollButtons();
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener('scroll', updateScrollButtons);
+      return () => container.removeEventListener('scroll', updateScrollButtons);
+    }
+  }, []);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 250;
+      scrollContainerRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Starfield />
       <TopNav />
       
       <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,19 +94,73 @@ const Index = () => {
         <section className="mt-6 mb-5">
           <div className="bg-card/60 rounded-2xl ring-1 ring-border p-3">
             <div className="flex flex-col md:flex-row gap-3 items-center justify-between">
-              <div className="flex gap-2 overflow-x-auto scrollbar-none w-full md:w-auto">
-                <button className="flex-none px-4 py-2 rounded-xl bg-primary text-primary-foreground text-sm font-medium whitespace-nowrap">
-                  All Vaults
-                </button>
-                <button className="flex-none px-4 py-2 rounded-xl bg-secondary text-secondary-foreground hover:bg-secondary/80 text-sm font-medium whitespace-nowrap transition">
-                  DeFi
-                </button>
-                <button className="flex-none px-4 py-2 rounded-xl bg-secondary text-secondary-foreground hover:bg-secondary/80 text-sm font-medium whitespace-nowrap transition">
-                  RWAs
-                </button>
-                <button className="flex-none px-4 py-2 rounded-xl bg-secondary text-secondary-foreground hover:bg-secondary/80 text-sm font-medium whitespace-nowrap transition">
-                  Creator Vaults
-                </button>
+              {/* Filter Button */}
+              <div className="flex items-center gap-3">
+                <Button
+                  variant="outline"
+                  className="flex items-center gap-2 bg-secondary text-secondary-foreground border-border"
+                >
+                  <SlidersHorizontal className="h-5 w-5" />
+                  Filter
+                </Button>
+              </div>
+
+              {/* Category Pills with Scroll */}
+              <div className="flex gap-2 items-center min-w-0 flex-1 justify-between">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => scroll('left')}
+                  disabled={!canScrollLeft}
+                  className="flex-none"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+
+                <div
+                  ref={scrollContainerRef}
+                  className="flex overflow-x-auto scrollbar-none min-w-0 px-2 gap-2 scroll-smooth"
+                  style={{
+                    scrollbarWidth: 'none',
+                    maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+                    WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+                  }}
+                >
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => setActiveCategory(category)}
+                      className={`flex-none px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition ${
+                        activeCategory === category
+                          ? 'bg-foreground text-background'
+                          : 'bg-secondary/50 text-secondary-foreground hover:bg-secondary'
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => scroll('right')}
+                  disabled={!canScrollRight}
+                  className="flex-none"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              </div>
+
+              {/* Sort Dropdown */}
+              <div className="flex items-center gap-3">
+                <Button
+                  variant="outline"
+                  className="flex items-center gap-2 bg-secondary text-secondary-foreground border-border"
+                >
+                  <ChevronDown className="h-5 w-5" />
+                  Recommended
+                </Button>
               </div>
             </div>
           </div>
