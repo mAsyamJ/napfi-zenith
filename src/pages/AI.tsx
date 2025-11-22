@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppLayout } from "@/components/AppLayout";
-import Starfield from "@/components/Starfield";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -413,8 +412,7 @@ Market Insights:
 
   return (
     <AppLayout>
-        <Starfield />
-        <div className="h-screen flex flex-col relative z-10">
+        <div className="h-screen flex flex-col">
           {/* Header */}
           <div className="border-b border-border/50 bg-card/50 backdrop-blur-sm">
             <div className="p-4 md:p-6">

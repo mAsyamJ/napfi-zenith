@@ -1,7 +1,6 @@
 import { useParams, Navigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { TopNav } from "@/components/TopNav";
-import Starfield from "@/components/Starfield";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -100,7 +99,6 @@ const VaultDetail = () => {
   };
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Starfield />
       <TopNav />
       
       <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">

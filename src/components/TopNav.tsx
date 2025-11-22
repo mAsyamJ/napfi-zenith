@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 
 export const TopNav = () => {
   return (
-    <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between py-4 gap-3">
+    <header className="sticky top-4 z-40 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="bg-background/80 backdrop-blur-md border border-border rounded-2xl shadow-lg px-4 sm:px-6">
+          <div className="flex items-center justify-between py-4 gap-3">
           <div className="flex items-center gap-6">
             <Link 
               to="/" 
@@ -51,6 +52,7 @@ export const TopNav = () => {
               }}
             />
           </button>
+          </div>
         </div>
       </div>
     </header>
