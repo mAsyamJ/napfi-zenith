@@ -1,6 +1,7 @@
 import { useParams, Navigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { AppSidebar } from "@/components/AppSidebar";
+import { TopNav } from "@/components/TopNav";
+import Starfield from "@/components/Starfield";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -98,9 +99,11 @@ const VaultDetail = () => {
     dataLabels: { enabled: false }
   };
   return (
-    <AppLayout className="px-12 md:px-16 lg:px-24">
-      <div>
-        <div>
+    <div className="min-h-screen bg-background text-foreground">
+      <Starfield />
+      <TopNav />
+      
+      <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Breadcrumb */}
           <div className="text-sm text-muted-foreground mb-4">
             <a href="/" className="hover:text-primary transition-colors">Dashboard</a>
@@ -374,9 +377,8 @@ const VaultDetail = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
-      </div>
-    </AppLayout>
+      </main>
+    </div>
   );
 };
 export default VaultDetail;
