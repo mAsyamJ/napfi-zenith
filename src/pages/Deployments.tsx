@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AppLayout } from "@/components/AppLayout";
+import { TopNav } from "@/components/TopNav";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -28,28 +29,28 @@ const Deployments = () => {
       title: "Token Deployment",
       description: "Deploy ERC-20 tokens with customizable supply, royalties, and distribution",
       features: ["Fixed/Mintable Supply", "Royalty Configuration", "Instant Deployment"],
-      color: "from-blue-500 to-purple-600"
+      color: "from-red-500 to-red-700"
     },
     {
       icon: <TrendingUp className="h-6 w-6" />,
       title: "Vault Deployment", 
       description: "Create yield-generating vaults with AI-optimized strategies",
       features: ["ERC-4626 Standard", "AI Strategy Selection", "Auto-Compounding"],
-      color: "from-green-500 to-blue-600"
+      color: "from-red-500 to-red-700"
     },
     {
       icon: <Star className="h-6 w-6" />,
       title: "Ownership NFTs",
       description: "Mint ERC-721 NFTs for vault ownership and governance rights",
       features: ["Governance Rights", "Fee Collection", "Strategy Control"],
-      color: "from-purple-500 to-pink-600"
+      color: "from-red-500 to-red-700"
     },
     {
       icon: <Users className="h-6 w-6" />,
       title: "Revenue Sharing",
       description: "Distribute yield to fans and supporters via ERC-1155 tokens",
       features: ["Fractional Ownership", "Automatic Distribution", "Fan Engagement"],
-      color: "from-orange-500 to-red-600"
+      color: "from-red-500 to-red-700"
     }
   ];
 
@@ -62,16 +63,17 @@ const Deployments = () => {
 
   return (
     <AppLayout>
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div className="theme-red max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <TopNav />
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-primary via-blue-400 to-primary bg-clip-text text-transparent mb-2">
-                NapFi Deployment Terminal
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent mb-2">
+                NapFi Deployment Console
               </h1>
               <p className="text-xl text-muted-foreground">
-                Deploy tokens, vaults, and strategies in minutes with AI assistance
+                Deploy tokens, vaults, and strategies with a red-themed console and quick actions
               </p>
             </div>
             <Button
@@ -86,16 +88,16 @@ const Deployments = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {stats.map((stat, index) => (
-            <Card key={index} className="bg-card/50 backdrop-blur-sm border-border/50">
+              <Card key={index} className="bg-card/50 backdrop-blur-sm border-border/50">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-muted-foreground">{stat.label}</p>
-                    <p className="text-2xl font-bold">{stat.value}</p>
+                      <p className="text-2xl font-bold">{stat.value}</p>
                   </div>
-                  <Badge variant="secondary" className="text-green-600 bg-green-100">
+                  <Badge variant="secondary" className="text-red-600 bg-red-100">
                     {stat.change}
                   </Badge>
                 </div>
@@ -106,11 +108,11 @@ const Deployments = () => {
 
         {/* Main Deployment Options */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-gradient-to-br from-blue-500/10 to-purple-600/10 border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 group">
+          <Card className="bg-gradient-to-br from-red-500/8 to-red-700/8 border-red-500/20 hover:border-red-500/40 transition-all duration-300 group">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-blue-500/20 rounded-lg group-hover:bg-blue-500/30 transition-colors">
-                  <Coins className="h-6 w-6 text-blue-400" />
+                <div className="p-3 bg-red-500/20 rounded-lg group-hover:bg-red-500/30 transition-colors">
+                  <Coins className="h-6 w-6 text-red-400" />
                 </div>
                 <div>
                   <CardTitle className="text-xl">Deploy ERC-20 Token</CardTitle>
@@ -138,7 +140,7 @@ const Deployments = () => {
               </div>
               <Button 
                 onClick={() => window.location.href = '/deploy/token'}
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+                className="w-full bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800"
                 size="lg"
               >
                 Deploy Token
@@ -147,11 +149,11 @@ const Deployments = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-green-500/10 to-blue-600/10 border-green-500/20 hover:border-green-500/40 transition-all duration-300 group">
+          <Card className="bg-gradient-to-br from-red-500/8 to-red-700/8 border-red-500/20 hover:border-red-500/40 transition-all duration-300 group">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-green-500/20 rounded-lg group-hover:bg-green-500/30 transition-colors">
-                  <TrendingUp className="h-6 w-6 text-green-400" />
+                <div className="p-3 bg-red-500/20 rounded-lg group-hover:bg-red-500/30 transition-colors">
+                  <TrendingUp className="h-6 w-6 text-red-400" />
                 </div>
                 <div>
                   <CardTitle className="text-xl">Deploy Yield Vault</CardTitle>
@@ -179,7 +181,7 @@ const Deployments = () => {
               </div>
               <Button 
                 onClick={() => window.location.href = '/deploy/vault'}
-                className="w-full bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700"
+                className="w-full bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800"
                 size="lg"
               >
                 Deploy Vault
@@ -196,8 +198,8 @@ const Deployments = () => {
             {features.map((feature, index) => (
               <Card key={index} className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-border transition-all duration-300">
                 <CardContent className="p-6">
-                  <div className={cn("p-3 rounded-lg bg-gradient-to-r w-fit mb-4", feature.color)}>
-                    {feature.icon}
+                    <div className={cn("p-3 rounded-lg bg-gradient-to-r w-fit mb-4", feature.color)}>
+                      {feature.icon}
                   </div>
                   <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
                   <p className="text-sm text-muted-foreground mb-4">{feature.description}</p>

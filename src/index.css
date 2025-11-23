@@ -77,6 +77,21 @@
   }
 }
 
+/* Red theme overrides for deployment console */
+@layer base {
+  .theme-red {
+    --primary: 358 78% 45%; /* red */
+    --primary-foreground: 0 0% 100%;
+    --gradient-start: 358 78% 45%;
+    --gradient-mid: 345 75% 40%;
+    --gradient-end: 328 72% 38%;
+    --chart-1: 358 78% 45%;
+    --chart-2: 345 75% 40%;
+    --chart-3: 10 80% 45%;
+    --border: 358 12% 12%;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;

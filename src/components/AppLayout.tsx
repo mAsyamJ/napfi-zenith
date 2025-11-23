@@ -1,11 +1,8 @@
 import { useEffect } from "react";
-import { useSidebar } from "@/contexts/SidebarContext";
 import { cn } from "@/lib/utils";
-import { AppSidebar } from "@/components/AppSidebar";
+import AIChat from "@/components/AIChat";
 
 export function AppLayout({ children, className }: { children: React.ReactNode; className?: string }) {
-  const { isOpen: sidebarOpen } = useSidebar();
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-[#26a0da]/5 to-background relative overflow-hidden">
       {/* Background Gradient Overlay */}
@@ -20,13 +17,7 @@ export function AppLayout({ children, className }: { children: React.ReactNode; 
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-[#ffffff] opacity-[0.02] blur-[120px] pointer-events-none" />
 
       <div className="flex relative z-10">
-        <AppSidebar />
-        <main 
-          className={cn(
-            "flex-1 min-h-screen w-full transition-all duration-300 ease-in-out",
-            sidebarOpen ? "lg:ml-64" : "lg:ml-20"
-          )}
-        >
+        <main className={cn("flex-1 min-h-screen w-full transition-all duration-300 ease-in-out")}>
           <div className={cn(
             "container mx-auto max-w-[1600px] p-4 md:p-6 lg:p-8 transition-all duration-300",
             className
@@ -35,6 +26,7 @@ export function AppLayout({ children, className }: { children: React.ReactNode; 
           </div>
         </main>
       </div>
+      <AIChat />
     </div>
   );
 }
