@@ -367,21 +367,74 @@ const Index: React.FC = () => {
 
           {/* Home Tab Content */}
           <TabsContent value="home" className="mt-0">
-            {/* Hero Section */}
             <section className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-border p-4 sm:p-6 lg:p-8 h-auto sm:h-[400px] lg:h-[500px] min-h-[350px]">
-              {/* 🎨 Gradient overlay */}
+              {/* Gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-background z-0" />
 
-              {/* 🎥 Spline 3D Background */}
               <div className="absolute inset-0 hidden lg:block z-0 opacity-60 pointer-events-none">
                 <iframe
                   src="https://my.spline.design/ventura2copy-QlljPuDvQWfMiAnUXFOrCrsY/"
                   className="w-full h-full border-0"
+                  style={{ transform: 'scaleX(-1)' }}
                   allow="fullscreen"
                 ></iframe>
               </div>
 
-              {/* TEXT CONTENT */}
+              {/* ⭐ RIGHT-SIDE HERO STATS (MOVED OUTSIDE TEXT DIV) */}
+              <div
+                className="
+      absolute 
+      right-6 
+      top-6 
+      lg:top-10 
+      z-30
+      w-[220px] sm:w-[260px] lg:w-[300px]
+    "
+              >
+                <div
+                  className="
+        bg-white/5 
+        backdrop-blur-xl 
+        border border-white/10 
+        rounded-2xl 
+        p-4 sm:p-5 
+        grid grid-cols-1 gap-4
+        animate-slide-up
+      "
+                >
+                  {/* TVL */}
+                  <div className="flex flex-col">
+                    <span className="text-xs sm:text-sm text-neutral-400">
+                      Total TVL
+                    </span>
+                    <span className="text-xl sm:text-2xl font-semibold text-white">
+                      ${(312_450_000).toLocaleString()}
+                    </span>
+                  </div>
+
+                  {/* 24h Yield */}
+                  <div className="flex flex-col">
+                    <span className="text-xs sm:text-sm text-neutral-400">
+                      24h Yield
+                    </span>
+                    <span className="text-xl sm:text-2xl font-semibold text-green-400">
+                      +3.8%
+                    </span>
+                  </div>
+
+                  {/* Active Vaults */}
+                  <div className="flex flex-col">
+                    <span className="text-xs sm:text-sm text-neutral-400">
+                      Active Vaults
+                    </span>
+                    <span className="text-xl sm:text-2xl font-semibold text-white">
+                      128
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* HERO TEXT */}
               <div className="relative z-20 max-w-2xl">
                 <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-foreground tracking-tight leading-[0.95] max-w-xl slide-up">
                   Discover Yield In
@@ -870,6 +923,17 @@ const Index: React.FC = () => {
 .animate {
   opacity: 1 !important;
 }
+
+@keyframes statsSlideUp {
+  0% { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(3px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+.animate-slide-up {
+  animation: statsSlideUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
 `}
         </style>
       </main>
