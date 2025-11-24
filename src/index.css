@@ -141,4 +141,15 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  @keyframes fadeSlideIn {
+    0% { opacity: 0; transform: translateY(30px); filter: blur(8px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  
+  .animate-on-scroll {
+    opacity: 0;
+    animation: fadeSlideIn 0.9s ease-out forwards;
+  }
+  
 }
