@@ -11,6 +11,7 @@ import mockVaults from '@/data/mockVaults.json';
 import { Link } from 'react-router-dom';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { VaultsExplorer } from '@/components/Dashboard/VaultsExplorer';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Rewritten Index component with bugs fixed and small animations included via a <style> block.
 // Notes:
@@ -25,6 +26,209 @@ type Vault = {
   description?: string;
   apy?: number;
   tvl?: number;
+};
+
+const faqItems = [
+  {
+    q: 'What is yield?',
+    a: 'Yield is the money your money earns automatically. In crypto, yield comes from lending, staking, providing liquidity, holding real-world assets, and automated strategies. NapaFi helps automate and optimize all of this.',
+  },
+  {
+    q: 'What is NapaFi?',
+    a: 'NapaFi is a programmable capital layer that unifies DeFi yield, RWA income, creator-driven rewards, and quant strategies into one automated system. Users deposit into vaults, and the platform optimizes yield behind the scenes.',
+  },
+  {
+    q: 'What exactly is a vault?',
+    a: 'A vault is an automated yield container. You deposit assets, the vault routes your capital across the best opportunities, compounds rewards, and grows your balance without needing active management.',
+  },
+  {
+    q: 'How does NapaFi generate yield?',
+    a: 'NapaFi uses a routing engine that allocates capital across DeFi protocols, tokenized RWAs, creator engagement signals, and published quant strategies. It constantly shifts allocations to optimize safety-adjusted yield.',
+  },
+  {
+    q: 'What are Creator Vaults?',
+    a: 'Creator Vaults allow creators, DAOs, or communities to launch their own vaults. Fans deposit to support them and earn yield. The community’s engagement boosts the vault’s performance through programmable incentives.',
+  },
+  {
+    q: 'What is the Strategy Marketplace?',
+    a: 'Builders publish on-chain strategies that vaults can plug into. When a vault uses their strategy, the creator earns automated royalties. It’s like a financial GitHub with built-in monetization.',
+  },
+  {
+    q: 'Is NapaFi safe?',
+    a: 'NapaFi uses audited smart contracts, multi-role permissions, time-locked upgrades, risk filters, and conservative routing logic. Your assets remain non-custodial and fully on-chain.',
+  },
+  {
+    q: 'Can anyone use NapaFi?',
+    a: 'Yes. All you need is a crypto wallet and assets like ETH or stablecoins. No DeFi experience is required — the vault manages everything automatically.',
+  },
+  {
+    q: 'How do creators earn?',
+    a: 'Creators earn through vault fees, strategy royalties, community activity boosts, referral yield, and programmable reward routes. Your audience becomes a yield-generating ecosystem.',
+  },
+  {
+    q: 'How do I earn yield as a normal user?',
+    a: 'Just deposit into a vault. The system routes your capital automatically. No farming, no switching protocols, no strategy building. Withdraw anytime.',
+  },
+  {
+    q: 'What makes NapaFi different?',
+    a: 'NapaFi combines the strongest sources of yield in one place: DeFi, RWAs, creator vaults, quant strategies, and community engagement. Most platforms only offer one of these — NapaFi unifies all of them.',
+  },
+];
+
+const AnimatedFAQ = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <section className="mt-24 mb-24">
+      <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-10">
+        Frequently Asked Questions
+      </h2>
+
+      <div className="space-y-4">
+        {faqItems.map((item, index) => (
+          <div
+            key={index}
+            className="bg-neutral-900/60 border border-white/10 rounded-xl p-4 cursor-pointer hover:bg-neutral-900 transition"
+            onClick={() => setOpenIndex(openIndex === index ? null : index)}
+          >
+            {/* Question */}
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-medium text-white">{item.q}</h3>
+              <motion.span
+                initial={{ rotate: 0 }}
+                animate={{ rotate: openIndex === index ? 180 : 0 }}
+                transition={{ duration: 0.25 }}
+                className="text-white"
+              >
+                ▼
+              </motion.span>
+            </div>
+
+            {/* Answer */}
+            <AnimatePresence>
+              {openIndex === index && (
+                <motion.p
+                  initial={{ opacity: 0, height: 0, y: -10 }}
+                  animate={{ opacity: 1, height: 'auto', y: 0 }}
+                  exit={{ opacity: 0, height: 0, y: -10 }}
+                  transition={{ duration: 0.35 }}
+                  className="mt-3 text-neutral-300 text-sm leading-relaxed"
+                >
+                  {item.a}
+                </motion.p>
+              )}
+            </AnimatePresence>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+const howSteps = [
+  {
+    id: 1,
+    title: 'Create or Join a Vault',
+    desc: 'A vault is your programmable container for capital. Start one for yourself, your community, or your mission — or join an existing vault that inspires you.',
+  },
+  {
+    id: 2,
+    title: 'Choose Agendas & Strategies',
+    desc: 'Select DeFi strategies, RWA income modules, or creator-driven agendas. Developers can also publish strategies that plug directly into your vault.',
+  },
+  {
+    id: 3,
+    title: 'Autonomous Capital Routing',
+    desc: 'NapaFi’s engine continuously reallocates your capital across the highest-performing opportunities based on yield, risk, community signals, and strategy performance.',
+  },
+  {
+    id: 4,
+    title: 'Grow Together',
+    desc: 'Your vault compounds yield as your community engages, strategies compete, and real-world & on-chain signals strengthen the vault’s performance.',
+  },
+];
+
+const CARD_HEIGHT = '260px';
+
+const HowItWorksSection = () => {
+  return (
+    <section className="mt-32 mb-32">
+      <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight text-white mb-12">
+        How NapaFi Works
+      </h2>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        {howSteps.map((step, index) => (
+          <motion.div
+            key={step.id}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: index * 0.12 }}
+            whileHover="hover"
+            className="relative rounded-2xl overflow-hidden bg-neutral-900/60 border border-white/10 p-6 transition-all duration-200"
+            style={{ height: CARD_HEIGHT }}
+          >
+            {/* 🔥 Hover Glow Layer (FIXED — now always visible) */}
+            <motion.div
+              className="absolute inset-0 rounded-2xl pointer-events-none z-20"
+              style={{
+                border: '2px solid transparent',
+                background: 'transparent',
+              }}
+              initial="initial"
+              variants={{
+                initial: {
+                  opacity: 0,
+                  scale: 1,
+                  boxShadow: 'none',
+                },
+                hover: {
+                  opacity: 1,
+                  scale: 1.03,
+                  boxShadow: '0 0 30px rgba(255,0,0,0.65)',
+                  borderColor: 'rgba(255,0,0,1)',
+                },
+              }}
+              transition={{ duration: 0.2 }}
+            />
+
+            {/* CONTENT LAYER */}
+            <div className="relative z-30">
+              {/* NUMBER */}
+              <div className="text-6xl font-bold text-white/10 mb-6">
+                {step.id}
+              </div>
+
+              {/* TITLE */}
+              <h3 className="text-white text-xl font-semibold mb-2">
+                {step.title}
+              </h3>
+
+              {/* DESCRIPTION (hidden until hover) */}
+              <motion.p
+                className="text-neutral-300 text-sm leading-relaxed overflow-hidden"
+                initial={{ opacity: 0, y: 10 }}
+                variants={{
+                  hover: {
+                    opacity: 1,
+                    y: 0,
+                  },
+                }}
+                transition={{ duration: 0.25 }}
+                style={{
+                  height: '70px',
+                  opacity: 0,
+                }}
+              >
+                {step.desc}
+              </motion.p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
 };
 
 const Index: React.FC = () => {
@@ -165,31 +369,37 @@ const Index: React.FC = () => {
           <TabsContent value="home" className="mt-0">
             {/* Hero Section */}
             <section className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-border p-4 sm:p-6 lg:p-8 h-auto sm:h-[400px] lg:h-[500px] min-h-[350px]">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-background" />
+              {/* 🎨 Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-background z-0" />
 
-              {/* Decorative uploaded image (keeps file path from your environment) */}
-              <img
-                src="/mnt/data/8ff7438d-1b6f-4907-b367-eb757a042db5.png"
-                alt="decor"
-                className="hidden lg:block absolute right-6 top-6 w-64 h-40 object-cover rounded-lg opacity-30 pointer-events-none"
-              />
+              {/* 🎥 Spline 3D Background */}
+              <div className="absolute inset-0 hidden lg:block z-0 opacity-60 pointer-events-none">
+                <iframe
+                  src="https://my.spline.design/ventura2copy-QlljPuDvQWfMiAnUXFOrCrsY/"
+                  className="w-full h-full border-0"
+                  allow="fullscreen"
+                ></iframe>
+              </div>
 
-              <div className="relative z-10 max-w-2xl">
+              {/* TEXT CONTENT */}
+              <div className="relative z-20 max-w-2xl">
                 <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-foreground tracking-tight leading-[0.95] max-w-xl slide-up">
                   Discover Yield In
                 </h1>
+
                 <h1
                   className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-foreground tracking-tight leading-[0.95] max-w-xl font-jakarta slide-up"
                   style={{ animationDelay: '120ms' }}
                 >
                   Movement
                 </h1>
+
                 <p
                   className="mt-4 sm:mt-6 text-sm sm:text-base lg:text-lg text-muted-foreground max-w-[60ch] slide-up"
                   style={{ animationDelay: '240ms' }}
                 >
                   Vaults that automatically route your capital across DeFi,
-                  real‑world assets, creator markets, and community‑powered
+                  real-world assets, creator markets, and community-powered
                   yield streams. Zero friction. Maximum output.
                 </p>
 
@@ -515,6 +725,11 @@ const Index: React.FC = () => {
                 </div>
               </div>
             </section>
+
+            <HowItWorksSection />
+
+            {/* FAQ SECTION */}
+            <AnimatedFAQ />
 
             <footer className="border-t border-white/10 mt-24 pt-12 pb-12 text-neutral-400 bg-neutral-950/60 backdrop-blur-xl rounded-t-3xl">
               <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
