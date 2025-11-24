@@ -11,20 +11,20 @@ type SortKey = "name" | "apy" | "tvl" | "deposited" | "dailyYield" | "safetyScor
 type SortOrder = "asc" | "desc" | null;
 
 const protocols = [
-  { name: "Ethereum", icon: "⟠", id: "ethereum" },
-  { name: "Arbitrum", icon: "🔷", id: "arbitrum" },
-  { name: "Base", icon: "🔵", id: "base" },
-  { name: "Polygon", icon: "🟣", id: "polygon" },
-  { name: "Avalanche", icon: "🔺", id: "avalanche" },
-  { name: "BSC", icon: "🟡", id: "bsc" },
-  { name: "Optimism", icon: "🔴", id: "optimism" },
+  { name: "Ethereum", icon: "ETH", id: "ethereum" },
+  { name: "Arbitrum", icon: "ARB", id: "arbitrum" },
+  { name: "Base", icon: "BASE", id: "base" },
+  { name: "Polygon", icon: "MATIC", id: "polygon" },
+  { name: "Avalanche", icon: "AVAX", id: "avalanche" },
+  { name: "BSC", icon: "BSC", id: "bsc" },
+  { name: "Optimism", icon: "OP", id: "optimism" },
 ];
 
 const categories = [
   "All",
   "Saved",
   "My Positions",
-  "Boosts 🔥",
+  "Boosts",
   "Stablecoins",
   "Blue Chips",
   "Memes",
@@ -66,7 +66,7 @@ export const VaultsExplorer = () => {
     const matchesProtocol = !selectedProtocol || vault.network === selectedProtocol;
     const matchesCategory =
       selectedCategory === "All" ||
-      (selectedCategory === "Boosts 🔥" && vault.apy > 15) ||
+      (selectedCategory === "Boosts" && vault.apy > 15) ||
       vault.category === selectedCategory;
     return matchesSearch && matchesProtocol && matchesCategory;
   });
@@ -88,42 +88,38 @@ export const VaultsExplorer = () => {
 
   return (
     <div className="mb-8">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold">Vaults Explorer</h2>
-      </div>
-
       {/* Protocol Filter Bar */}
-      <div className="flex items-center gap-3 overflow-x-auto py-3 px-1 scrollbar-hide mb-4">
+      <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto py-2 sm:py-3 px-1 scrollbar-hide mb-3 sm:mb-4">
         {protocols.map((protocol) => (
           <button
             key={protocol.id}
             onClick={() => setSelectedProtocol(selectedProtocol === protocol.id ? null : protocol.id)}
-            className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-2xl transition-all ${
+            className={`flex-shrink-0 px-3 py-2 rounded-full flex items-center justify-center text-xs font-semibold transition-all ${
               selectedProtocol === protocol.id
                 ? "bg-primary ring-2 ring-primary shadow-[0_0_12px_hsl(var(--primary)/0.5)]"
                 : "bg-card border border-border hover:border-primary/50 hover:shadow-[0_0_8px_hsl(var(--primary)/0.3)]"
             }`}
             title={protocol.name}
           >
-            {protocol.icon}
+            <span className="text-xs font-semibold">{protocol.icon}</span>
           </button>
         ))}
       </div>
 
       {/* Category Tabs */}
-      <div className="flex gap-2 flex-wrap mb-4">
+      <div className="flex gap-1.5 sm:gap-2 flex-wrap mb-3 sm:mb-4">
         {categories.map((category) => (
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+            className={`px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium transition-all ${
               selectedCategory === category
                 ? "bg-primary text-primary-foreground shadow-lg"
                 : "bg-card text-muted-foreground hover:bg-muted border border-border"
             }`}
           >
             {category}
-            {category === "Boosts 🔥" && (
+            {category === "Boosts" && (
               <Badge variant="secondary" className="ml-2 text-xs">New</Badge>
             )}
           </button>
@@ -144,14 +140,14 @@ export const VaultsExplorer = () => {
       </div>
 
       {/* Search Bar */}
-      <div className="relative mb-6">
-        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+      <div className="relative mb-4 sm:mb-6">
+        <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground" />
         <Input
           type="text"
           placeholder="Search by asset name"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full bg-card text-foreground pl-11 pr-16 py-3 rounded-xl border-border focus:border-primary transition-colors"
+          className="w-full bg-card text-foreground pl-9 sm:pl-11 pr-12 sm:pr-16 py-2 sm:py-3 text-sm sm:text-base rounded-lg sm:rounded-xl border-border focus:border-primary transition-colors"
         />
         <kbd className="absolute right-4 top-1/2 transform -translate-y-1/2 px-2 py-1 text-xs text-muted-foreground bg-muted rounded border border-border">
           /
@@ -159,9 +155,9 @@ export const VaultsExplorer = () => {
       </div>
 
       {/* Vault Table */}
-      <div className="bg-card rounded-xl border border-border overflow-hidden">
+      <div className="bg-card rounded-xl border border-border overflow-hidden overflow-x-auto">
         {/* Table Header */}
-        <div className="grid grid-cols-12 gap-4 px-6 py-3 border-b border-border bg-muted/30 text-xs uppercase text-muted-foreground font-semibold">
+        <div className="grid grid-cols-12 gap-2 sm:gap-4 px-3 sm:px-6 py-3 border-b border-border bg-muted/30 text-[10px] sm:text-xs uppercase text-muted-foreground font-semibold min-w-[1000px]">
           <div className="col-span-3">Vault</div>
           <div className="col-span-2 flex items-center cursor-pointer hover:text-foreground" onClick={() => handleSort("name")}>
             Platform {getSortIcon("name")}
@@ -190,7 +186,7 @@ export const VaultsExplorer = () => {
             <div
               key={vault.id}
               onClick={() => navigate(`/vault/${vault.id}`)}
-              className="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-muted/50 transition-colors cursor-pointer group"
+              className="grid grid-cols-12 gap-2 sm:gap-4 px-3 sm:px-6 py-3 sm:py-4 hover:bg-muted/50 transition-colors cursor-pointer group min-w-[1000px]"
             >
               {/* Vault Name + Tokens */}
               <div className="col-span-3 flex items-center gap-3">
