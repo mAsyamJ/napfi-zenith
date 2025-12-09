@@ -3,76 +3,68 @@ import { parseEther, formatEther } from 'viem';
 import VaultAggregatorABI from '@/abis/VaultAggregator.json';
 
 export function useVaultContract(vaultAddress: `0x${string}` | undefined) {
-  const { writeContract, data: hash, isPending, error } = useWriteContract();
-  
+  const { writeContractAsync, data: hash, isPending, error } = useWriteContract();
+
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
 
   const { data: totalAssets, refetch: refetchTotalAssets } = useReadContract({
     address: vaultAddress,
-    abi: VaultAggregatorABI,
+    abi: VaultAggregatorABI as any,
     functionName: 'totalAssets',
-    query: { enabled: !!vaultAddress },
   });
 
   const { data: totalIdle, refetch: refetchTotalIdle } = useReadContract({
     address: vaultAddress,
-    abi: VaultAggregatorABI,
+    abi: VaultAggregatorABI as any,
     functionName: 'totalIdle',
-    query: { enabled: !!vaultAddress },
   });
 
   const { data: totalDebt, refetch: refetchTotalDebt } = useReadContract({
     address: vaultAddress,
-    abi: VaultAggregatorABI,
+    abi: VaultAggregatorABI as any,
     functionName: 'totalDebt',
-    query: { enabled: !!vaultAddress },
   });
 
   const { data: totalSupply, refetch: refetchTotalSupply } = useReadContract({
     address: vaultAddress,
-    abi: VaultAggregatorABI,
+    abi: VaultAggregatorABI as any,
     functionName: 'totalSupply',
-    query: { enabled: !!vaultAddress },
   });
 
   const { data: vaultName } = useReadContract({
     address: vaultAddress,
-    abi: VaultAggregatorABI,
+    abi: VaultAggregatorABI as any,
     functionName: 'name',
-    query: { enabled: !!vaultAddress },
   });
 
   const { data: vaultSymbol } = useReadContract({
     address: vaultAddress,
-    abi: VaultAggregatorABI,
+    abi: VaultAggregatorABI as any,
     functionName: 'symbol',
-    query: { enabled: !!vaultAddress },
   });
 
   const { data: asset } = useReadContract({
     address: vaultAddress,
-    abi: VaultAggregatorABI,
+    abi: VaultAggregatorABI as any,
     functionName: 'asset',
-    query: { enabled: !!vaultAddress },
   });
 
   const { data: owner } = useReadContract({
     address: vaultAddress,
-    abi: VaultAggregatorABI,
+    abi: VaultAggregatorABI as any,
     functionName: 'owner',
-    query: { enabled: !!vaultAddress },
   });
 
   const { data: emergencyShutdown } = useReadContract({
     address: vaultAddress,
-    abi: VaultAggregatorABI,
+    abi: VaultAggregatorABI as any,
     functionName: 'emergencyShutdown',
-    query: { enabled: !!vaultAddress },
   });
 
   const deposit = async (amount: string, receiver: `0x${string}`) => {
-    writeContract({
-      address: vaultAddress!,
+    if (!vaultAddress) return;
+    return (writeContractAsync as any)({
+      address: vaultAddress,
       abi: VaultAggregatorABI,
       functionName: 'deposit',
       args: [parseEther(amount), receiver],
@@ -80,8 +72,9 @@ export function useVaultContract(vaultAddress: `0x${string}` | undefined) {
   };
 
   const withdraw = async (amount: string, receiver: `0x${string}`, ownerAddr: `0x${string}`) => {
-    writeContract({
-      address: vaultAddress!,
+    if (!vaultAddress) return;
+    return (writeContractAsync as any)({
+      address: vaultAddress,
       abi: VaultAggregatorABI,
       functionName: 'withdraw',
       args: [parseEther(amount), receiver, ownerAddr],
@@ -89,8 +82,9 @@ export function useVaultContract(vaultAddress: `0x${string}` | undefined) {
   };
 
   const redeem = async (shares: string, receiver: `0x${string}`, ownerAddr: `0x${string}`) => {
-    writeContract({
-      address: vaultAddress!,
+    if (!vaultAddress) return;
+    return (writeContractAsync as any)({
+      address: vaultAddress,
       abi: VaultAggregatorABI,
       functionName: 'redeem',
       args: [parseEther(shares), receiver, ownerAddr],
@@ -98,12 +92,19 @@ export function useVaultContract(vaultAddress: `0x${string}` | undefined) {
   };
 
   const rebalance = async () => {
-    writeContract({ address: vaultAddress!, abi: VaultAggregatorABI, functionName: 'rebalance' });
+    if (!vaultAddress) return;
+    return (writeContractAsync as any)({
+      address: vaultAddress,
+      abi: VaultAggregatorABI,
+      functionName: 'rebalance',
+      args: [],
+    });
   };
 
   const addStrategy = async (strategyAddress: `0x${string}`, ratioBps: bigint) => {
-    writeContract({
-      address: vaultAddress!,
+    if (!vaultAddress) return;
+    return (writeContractAsync as any)({
+      address: vaultAddress,
       abi: VaultAggregatorABI,
       functionName: 'addStrategy',
       args: [strategyAddress, ratioBps],
@@ -111,8 +112,9 @@ export function useVaultContract(vaultAddress: `0x${string}` | undefined) {
   };
 
   const setEmergencyShutdown = async (flag: boolean) => {
-    writeContract({
-      address: vaultAddress!,
+    if (!vaultAddress) return;
+    return (writeContractAsync as any)({
+      address: vaultAddress,
       abi: VaultAggregatorABI,
       functionName: 'setEmergencyShutdown',
       args: [flag],
@@ -136,7 +138,17 @@ export function useVaultContract(vaultAddress: `0x${string}` | undefined) {
     asset: asset as `0x${string}` | undefined,
     owner: owner as `0x${string}` | undefined,
     emergencyShutdown: emergencyShutdown as boolean | undefined,
-    deposit, withdraw, redeem, rebalance, addStrategy, setEmergencyShutdown,
-    hash, isPending, isConfirming, isConfirmed, error, refetchAll,
+    deposit,
+    withdraw,
+    redeem,
+    rebalance,
+    addStrategy,
+    setEmergencyShutdown,
+    hash,
+    isPending,
+    isConfirming,
+    isConfirmed,
+    error,
+    refetchAll,
   };
 }
