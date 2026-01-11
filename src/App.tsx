@@ -2,35 +2,46 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// Sidebar has been consolidated into the TopNav; SidebarProvider removed
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { WagmiProvider } from 'wagmi';
-import { config } from '@/config/wagmi';
+import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import VaultDetail from "./pages/VaultDetail";
-import Admin from "./pages/Admin";
-import Events from "./pages/Events";
+import Swap from "./pages/Swap";
+import Pro from "./pages/Pro";
+import Portfolio from "./pages/Portfolio";
+import AI from "./pages/AI";
+import Deployments from "./pages/Deployments";
+import DeployToken from "./pages/DeployToken";
+import DeployVault from "./pages/DeployVault";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <WagmiProvider config={config}>
-    <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <TooltipProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/vault/:address" element={<VaultDetail />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/events" element={<Events />} />
+            <Route path="/vault/:id" element={<VaultDetail />} />
+            <Route path="/swap" element={<Swap />} />
+            <Route path="/pro" element={<Pro />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/ai" element={<AI />} />
+            <Route path="/deployments" element={<Deployments />} />
+            <Route path="/deploy/token" element={<DeployToken />} />
+            <Route path="/deploy/vault" element={<DeployVault />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
-    </QueryClientProvider>
-  </WagmiProvider>
+    </ThemeProvider>
+  </QueryClientProvider>
 );
 
 export default App;
